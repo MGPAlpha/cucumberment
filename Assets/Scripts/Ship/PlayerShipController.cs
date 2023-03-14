@@ -39,5 +39,10 @@ public class PlayerShipController : MonoBehaviour
         turnInput = Vector2.ClampMagnitude(turnInput, 1);
 
         shipCore.SetTurning(turnInput);
+
+        float rollInput = 0;
+        if (Input.GetKey(KeyCode.D)) rollInput++;
+        if (Input.GetKey(KeyCode.A)) rollInput--;
+        shipCore.SetRoll(rollInput);
     }
 }

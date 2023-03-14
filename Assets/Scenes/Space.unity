@@ -838,7 +838,7 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 0
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -908,6 +908,8 @@ MonoBehaviour:
   baseBrake: 25
   baseTurnSpeed: 90
   turnSpeedDampingFactor: 0.4
+  baseRollSpeed: 60
+  rollAcceleration: 90
 --- !u!54 &1001223537
 Rigidbody:
   m_ObjectHideFlags: 0
