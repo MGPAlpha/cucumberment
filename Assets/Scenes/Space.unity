@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c41ac9245b87c4192012080077d830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Damping: 1
+  m_Damping: 0.1
 --- !u!114 &659785583
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -484,9 +484,9 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0.5
+  m_YDamping: 0.5
+  m_ZDamping: 0.1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.79
@@ -868,6 +868,7 @@ GameObject:
   - component: {fileID: 1001223537}
   - component: {fileID: 1001223536}
   - component: {fileID: 1001223538}
+  - component: {fileID: 1001223539}
   m_Layer: 0
   m_Name: Player Controller
   m_TagString: Untagged
@@ -910,6 +911,9 @@ MonoBehaviour:
   turnSpeedDampingFactor: 0.4
   baseRollSpeed: 60
   rollAcceleration: 90
+  turnTiltMax: 50
+  turnTiltSpeed: 60
+  shipModel: {fileID: 1528989521}
 --- !u!54 &1001223537
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -939,7 +943,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throttleSpeed: 1
-  turnSensitivity: 5
+  turnSensitivity: 1
+--- !u!114 &1001223539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001223534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cb41e4529483c6e8d67c9e895d567d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseWeight: 20
 --- !u!1 &1160234425
 GameObject:
   m_ObjectHideFlags: 0

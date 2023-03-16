@@ -33,12 +33,14 @@ public class PlayerShipController : MonoBehaviour
 
         Vector2 newTurnInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * turnSensitivity *.01f;
         float aspRatio = Screen.width / Screen.height;
-        newTurnInput.y /= aspRatio;
+        // newTurnInput.y /= aspRatio;
         turnInput += newTurnInput;
 
         turnInput = Vector2.ClampMagnitude(turnInput, 1);
 
-        shipCore.SetTurning(turnInput);
+        Vector2 deadZonedTurn = turnInput * Mathf.InverseLerp(.1f, 1, turnInput.magnitude);
+
+        shipCore.SetTurning(deadZonedTurn);
 
         float rollInput = 0;
         if (Input.GetKey(KeyCode.D)) rollInput++;
