@@ -83,6 +83,8 @@ public class AsteroidVolume : MonoBehaviour
             Transform newAsteroid = Instantiate(currPrefab.transform, new Vector3(Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize)) + FieldCenter.position, Random.rotation);
             newAsteroid.GetComponent<GeneratedAsteroid>().Regenerate(this);
         }
+        Shader.SetGlobalFloat("_AsteroidFieldSize", FieldSize);
+        Shader.SetGlobalFloat("_AsteroidSizeFalloff", .7f);
         lastGenerationCenter = FieldCenter.position;
     }
 
