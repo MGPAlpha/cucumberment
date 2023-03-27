@@ -807,9 +807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119a87c4a6e4a0f4e9204c574a79eda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldCenter: {fileID: 1001223535}
-  fieldSize: 3000
-  asteroidCount: 10000
+  <FieldCenter>k__BackingField: {fileID: 1001223535}
+  <FieldSize>k__BackingField: 3000
+  <AsteroidCount>k__BackingField: 10000
   asteroidPrefabs:
   - {fileID: -4943733506761307451, guid: ea69caf230089fd45b16b373fef6d83f, type: 3}
   - {fileID: 1299537318179532547, guid: f63608ae9c0289f43a6dc73a03c5570a, type: 3}
