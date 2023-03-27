@@ -9,6 +9,7 @@ public class GeneratedAsteroid : MonoBehaviour
 
     private Rigidbody _rb;
     private Collider _col;
+    private Renderer _re;
 
     private AsteroidVolume parentVolume;
     private Transform parentVolumeCenter;
@@ -24,6 +25,7 @@ public class GeneratedAsteroid : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<Collider>();
+        _re = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -50,5 +52,8 @@ public class GeneratedAsteroid : MonoBehaviour
         _rb.SetDensity(10);
         _rb.mass = _rb.mass;
         inBounds = true;
+        bool shouldBlock = AsteroidBlocker.TestAsteroidBlock(transform.position);
+        _col.enabled = !shouldBlock;
+        _re.enabled = !shouldBlock;
     }
 }
