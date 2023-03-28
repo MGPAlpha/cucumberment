@@ -63,7 +63,7 @@ public class ShipCore : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        Vector2 smoothedTurning = turnInput * Mathf.Pow(turnInput.magnitude, 2);
+        Vector2 smoothedTurning = turnInput;
         if (collisionMode) {
             print("rb velocity " + _rb.angularVelocity.magnitude);
             if (collisionTime > 2 && _rb.angularVelocity.magnitude < .3) {

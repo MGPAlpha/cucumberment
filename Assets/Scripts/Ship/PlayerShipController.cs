@@ -6,13 +6,33 @@ using UnityEngine;
 public class PlayerShipController : MonoBehaviour
 {
 
+    public static PlayerShipController Main {get; private set;}
+    public static ShipCore PlayerShip {get => Main ? Main.shipCore : null;}
+
     private ShipCore shipCore;
 
-    private float throttle;
+    public float Throttle {get; private set;}
     [SerializeField] private float throttleSpeed = 1;
 
-    private Vector2 turnInput;
+    public Vector2 TurnInput {get; private set;}
+    public Vector2 SmoothedTurning {get; private set;}
     [SerializeField] private float turnSensitivity = 5f;
+
+    /// <summary>
+    /// This function is called when the object becomes enabled and active.
+    /// </summary>
+    private void OnEnable()
+    {
+        Main = this;
+    }
+
+    /// <summary>
+    /// This function is called when the behaviour becomes disabled or inactive.
+    /// </summary>
+    private void OnDisable()
+    {
+        if (Main == this) Main = null;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -24,23 +44,26 @@ public class PlayerShipController : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.W)) {
-            throttle = Mathf.MoveTowards(throttle, 1, throttleSpeed * Time.deltaTime);
+            Throttle = Mathf.MoveTowards(Throttle, 1, throttleSpeed * Time.deltaTime);
         } else if (Input.GetKey(KeyCode.S)) {
-            throttle = Mathf.MoveTowards(throttle, 0, throttleSpeed * Time.deltaTime);
+            Throttle = Mathf.MoveTowards(Throttle, 0, throttleSpeed * Time.deltaTime);
         }
 
-        shipCore.SetThrottle(throttle);
+        shipCore.SetThrottle(Throttle);
 
         Vector2 newTurnInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * turnSensitivity *.01f;
-        float aspRatio = Screen.width / Screen.height;
+        // float aspRatio = Screen.width / Screen.height;
         // newTurnInput.y /= aspRatio;
-        turnInput += newTurnInput;
+        TurnInput += newTurnInput * Mathf.Lerp(1, Mathf.InverseLerp(1, .2f, TurnInput.magnitude), Vector2.Dot(newTurnInput.normalized, TurnInput.normalized));
 
-        turnInput = Vector2.ClampMagnitude(turnInput, 1);
+        TurnInput = Vector2.ClampMagnitude(TurnInput, 1);
 
-        Vector2 deadZonedTurn = turnInput * Mathf.InverseLerp(.1f, 1, turnInput.magnitude);
+        Vector2 deadZonedTurn = TurnInput * Mathf.InverseLerp(.1f, 1, TurnInput.magnitude);
 
-        shipCore.SetTurning(deadZonedTurn);
+        // SmoothedTurning = deadZonedTurn * (-Mathf.Pow(deadZonedTurn.magnitude-1, 4)+1);
+        SmoothedTurning = deadZonedTurn;
+
+        shipCore.SetTurning(SmoothedTurning);
 
         float rollInput = 0;
         if (Input.GetKey(KeyCode.D)) rollInput++;

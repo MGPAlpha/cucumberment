@@ -30,7 +30,6 @@ public class AsteroidVolume : MonoBehaviour
     /// </summary>
     private void LateUpdate()
     {
-        print("Num out of bounds: " + outOfBoundsAsteroids.Count);
         if (outOfBoundsAsteroids.Count > 100) {
             RespawnOutOfBoundsAsteroids();
         }
