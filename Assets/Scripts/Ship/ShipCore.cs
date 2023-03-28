@@ -8,6 +8,7 @@ public class ShipCore : MonoBehaviour
     private Rigidbody _rb;
 
     private ShipEncumbermentSystem encumbermentSystem;
+    private FuelManager fuelManager;
 
     private float throttle = 0;
     private float currentSpeed = 0;
@@ -35,6 +36,7 @@ public class ShipCore : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         TryGetComponent<ShipEncumbermentSystem>(out encumbermentSystem);
+        TryGetComponent<FuelManager>(out fuelManager);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -75,12 +77,23 @@ public class ShipCore : MonoBehaviour
               
         } else {
 
+            if (fuelManager) {
+                fuelManager.BurnFuel(throttle, Time.fixedDeltaTime);
+            }
+
             float encumbermentFactor = 1;
             if (encumbermentSystem) {
+                
                 encumbermentFactor = encumbermentSystem.SpeedRatio;
+                Debug.Log(encumbermentFactor);
             }
             
             float speedTarget = baseMaxSpeed * throttle * encumbermentFactor;
+
+            if (fuelManager && !fuelManager.CanFly) {
+                speedTarget = 0;
+            }
+
             if (speedTarget < currentSpeed) {
                 currentSpeed = Mathf.MoveTowards(currentSpeed, speedTarget, baseAcceleration * Time.fixedDeltaTime * encumbermentFactor);
             } else if (speedTarget > currentSpeed) {

@@ -8,8 +8,10 @@ public class PlayerShipController : MonoBehaviour
 
     public static PlayerShipController Main {get; private set;}
     public static ShipCore PlayerShip {get => Main ? Main.shipCore : null;}
+    public static FuelManager PlayerFuelManager {get => Main ? Main.fuelManager : null;}
 
     private ShipCore shipCore;
+    private FuelManager fuelManager;
 
     public float Throttle {get; private set;}
     [SerializeField] private float throttleSpeed = 1;
@@ -38,6 +40,7 @@ public class PlayerShipController : MonoBehaviour
     void Start()
     {
         shipCore = GetComponent<ShipCore>();
+        fuelManager = GetComponent<FuelManager>();
     }
 
     // Update is called once per frame
