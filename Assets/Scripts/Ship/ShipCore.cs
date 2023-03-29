@@ -12,6 +12,7 @@ public class ShipCore : MonoBehaviour
 
     private float throttle = 0;
     private float currentSpeed = 0;
+    private bool useBoost = false;
     private Vector2 turnInput = Vector2.zero;
     private float rollInput = 0;
     [SerializeField] private float baseMaxSpeed = 25;
@@ -28,6 +29,10 @@ public class ShipCore : MonoBehaviour
     [SerializeField] private float turnTiltSpeed = 60;
     private float currentTurnTilt = 0;
     [SerializeField] private Transform shipModel;
+
+    [SerializeField] private float boostSpeedFactor = 4;
+    [SerializeField] private float boostAccelFactor = 5;
+    [SerializeField] private float boostFuelFactor = 8;
 
     private bool collisionMode = false;
 
@@ -58,6 +63,10 @@ public class ShipCore : MonoBehaviour
         turnInput = val;
     }
 
+    public void SetBoost(bool val) {
+        useBoost = val;
+    }
+
     private float collisionTime = 0;
 
     /// <summary>
@@ -78,7 +87,7 @@ public class ShipCore : MonoBehaviour
         } else {
 
             if (fuelManager) {
-                fuelManager.BurnFuel(throttle, Time.fixedDeltaTime);
+                fuelManager.BurnFuel(throttle + (useBoost ? boostFuelFactor : 0), Time.fixedDeltaTime);
             }
 
             float encumbermentFactor = 1;
@@ -88,15 +97,15 @@ public class ShipCore : MonoBehaviour
                 Debug.Log(encumbermentFactor);
             }
             
-            float speedTarget = baseMaxSpeed * throttle * encumbermentFactor;
+            float speedTarget = baseMaxSpeed * (throttle + (useBoost ? boostSpeedFactor : 0)) * encumbermentFactor;
 
             if (fuelManager && !fuelManager.CanFly) {
                 speedTarget = 0;
             }
 
-            if (speedTarget < currentSpeed) {
-                currentSpeed = Mathf.MoveTowards(currentSpeed, speedTarget, baseAcceleration * Time.fixedDeltaTime * encumbermentFactor);
-            } else if (speedTarget > currentSpeed) {
+            if (speedTarget > currentSpeed) {
+                currentSpeed = Mathf.MoveTowards(currentSpeed, speedTarget, baseAcceleration * (useBoost ? boostAccelFactor : 1) * Time.fixedDeltaTime * encumbermentFactor);
+            } else if (speedTarget < currentSpeed) {
                 currentSpeed = Mathf.MoveTowards(currentSpeed, speedTarget, baseBrake * Time.fixedDeltaTime * encumbermentFactor);
             }
 

@@ -72,5 +72,7 @@ public class PlayerShipController : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) rollInput++;
         if (Input.GetKey(KeyCode.A)) rollInput--;
         shipCore.SetRoll(rollInput);
+
+        shipCore.SetBoost(Input.GetKey(KeyCode.LeftShift));
     }
 }
