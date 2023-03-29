@@ -30,10 +30,9 @@ public class CrashCamera : MonoBehaviour
     }
 
     public void ActivateCrash(Transform ship) {
-        transposer.m_FollowOffset = Camera.main.transform.rotation * cameraOffset;
-        cmVCam.transform.rotation = Camera.main.transform.rotation;
-        cmVCam.transform.position = Camera.main.transform.position;
+        transposer.m_FollowOffset = Camera.main.transform.position - ship.position;
         gameObject.SetActive(true);
+        cmVCam.ForceCameraPosition(Camera.main.transform.position, Camera.main.transform.rotation);
     }
 
     public void DeactivateCrash() {
