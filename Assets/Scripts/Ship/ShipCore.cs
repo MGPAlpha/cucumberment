@@ -81,6 +81,7 @@ public class ShipCore : MonoBehaviour
                 collisionMode = false;
                 _rb.velocity = Vector3.zero;
                 _rb.isKinematic = true;
+                CrashCamera.Main.DeactivateCrash();
             }
             collisionTime += Time.fixedDeltaTime;
               
@@ -143,5 +144,6 @@ public class ShipCore : MonoBehaviour
         currentSpeed = 0;
         turnInput = Vector2.zero;
         collisionTime = 0;
+        CrashCamera.Main.ActivateCrash(transform);
     }
 }
