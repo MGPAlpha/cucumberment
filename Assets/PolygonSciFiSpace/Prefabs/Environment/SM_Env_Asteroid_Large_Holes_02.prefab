@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64507698930390222}
   - component: {fileID: -3568250493731741255}
   - component: {fileID: 3194331448674566365}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Env_Asteroid_Large_Holes_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}

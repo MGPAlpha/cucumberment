@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 64898504429392932}
   - component: {fileID: 5017593062449034267}
   - component: {fileID: 1809863760469217517}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Env_Asteroid_Rock_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
