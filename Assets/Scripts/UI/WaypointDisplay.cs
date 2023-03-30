@@ -7,6 +7,7 @@ public class WaypointDisplay : MonoBehaviour
     public static WaypointDisplay Main {get; private set;}
 
     [SerializeField] private GameObject waypointMarkerPrefab;
+    [field: SerializeField] public float ArrowFitBorder {get; private set;} = 20;
 
 
     private Dictionary<PositionBroadcaster, WaypointMarker> markers = new Dictionary<PositionBroadcaster, WaypointMarker>();
@@ -29,7 +30,7 @@ public class WaypointDisplay : MonoBehaviour
 
     public void DeleteWaypoint(PositionBroadcaster pos) {
         WaypointMarker marker = markers[pos];
-        Destroy(marker.gameObject);
+        if (marker) Destroy(marker.gameObject);
         markers.Remove(pos);
     }
 
