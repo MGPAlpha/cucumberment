@@ -42,4 +42,16 @@ public class FuelManager : MonoBehaviour, IWeightContributor
     public float GetWeight() {
         return CurrentFuel * density;
     }
+
+    public void LoadFuelTankData(FuelTankData data) {
+        efficiency = data.efficiency;
+        CurrentFuel = data.currentFuel;
+        density = data.density;    
+    }
+
+    public void FillFuelTankData(FuelTankData data) {
+        data.efficiency = efficiency;
+        data.currentFuel = CurrentFuel;
+        data.density = density;
+    }
 }

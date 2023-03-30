@@ -20,7 +20,7 @@ public class PlayerShipController : MonoBehaviour
     public Vector2 SmoothedTurning {get; private set;}
     [SerializeField] private float turnSensitivity = 5f;
 
-    private DockingField activeDockingField;
+    public DockingField ActiveDockingField {get; private set;}
 
     [SerializeField] private float dockingTime = 5;
     private float dockingTimer = 0;
@@ -81,10 +81,10 @@ public class PlayerShipController : MonoBehaviour
 
         shipCore.SetBoost(Input.GetKey(KeyCode.LeftShift));
 
-        if (activeDockingField && Input.GetKey(KeyCode.E)) {
+        if (ActiveDockingField && Input.GetKey(KeyCode.E)) {
             dockingTimer += Time.deltaTime;
             if (dockingTimer >= dockingTime) {
-                activeDockingField.Dock();
+                ActiveDockingField.Dock();
             }
         } else {
             dockingTimer = 0;
@@ -92,12 +92,12 @@ public class PlayerShipController : MonoBehaviour
     }
 
     public void RegisterDockingField(DockingField field) {
-        activeDockingField = field;
+        ActiveDockingField = field;
     }
 
     public void RemoveDockingField(DockingField field) {
-        if (activeDockingField == field) {
-            activeDockingField = null;
+        if (ActiveDockingField == field) {
+            ActiveDockingField = null;
         }
     }
 }
