@@ -21,7 +21,7 @@ public class FlightAimDisplay : MonoBehaviour
 
             // cursor.localPosition = new Vector3(aim.x, aim.y, 0);
             cursor.anchoredPosition = aim * displayTransform.rect.height/2;
-            Debug.Log(aim);
+            // Debug.Log(aim);
         }
     }
 }
