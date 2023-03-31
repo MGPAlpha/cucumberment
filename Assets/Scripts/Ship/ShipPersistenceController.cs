@@ -32,9 +32,12 @@ public class ShipPersistenceController : MonoBehaviour
 
     void Awake()
     {
+        Debug.Log("Awake");
         LoadShips();
         shipsLoaded = true;
     }
+
+    private static Action backupActiveShips;
 
     private static Dictionary<string, ShipData> persistentShips = new Dictionary<string, ShipData>();
     private static bool shipsLoaded = false;
@@ -50,6 +53,8 @@ public class ShipPersistenceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Start");
+        Debug.Log(persistentShips["Player"].fuelTank.currentFuel);
         TryGetComponent<FuelManager>(out fuelManager);
         if (persistentShips.ContainsKey(ShipName)) {
             shipData = persistentShips[ShipName];
@@ -64,12 +69,29 @@ public class ShipPersistenceController : MonoBehaviour
         }
     }
 
-    private void OnDestroy() {
+    /// <summary>
+    /// This function is called when the object becomes enabled and active.
+    /// </summary>
+    private void OnEnable()
+    {
+        backupActiveShips += BackupToShipData;
+    }
+
+    /// <summary>
+    /// This function is called when the behaviour becomes disabled or inactive.
+    /// </summary>
+    private void OnDisable()
+    {
+        backupActiveShips -= BackupToShipData;
+    }
+
+    private void BackupToShipData() {
         if (fuelManager && persistFuel) {
             fuelManager.FillFuelTankData(shipData.fuelTank);
+            print("Current fuel on destroy" + shipData.fuelTank.currentFuel);
         }
-        SaveShips();
     }
+
 
     public static void SaveShips() {
         
@@ -81,6 +103,8 @@ public class ShipPersistenceController : MonoBehaviour
         //     PlayerPrefs.SetString(shipKeyName, JsonUtility.ToJson(persistentShips[name]));
         // }
 
+        backupActiveShips.Invoke();
+        Debug.Log(persistentShips["Player"].fuelTank.currentFuel);
         PlayerPrefs.SetString("ships", JsonConvert.SerializeObject(persistentShips));
         
     }
@@ -102,6 +126,7 @@ public class ShipPersistenceController : MonoBehaviour
             Dictionary<string, ShipData> savedShips = JsonConvert.DeserializeObject<Dictionary<string, ShipData>>(PlayerPrefs.GetString("ships"));
             foreach (string name in savedShips.Keys) {
                 persistentShips[name] = savedShips[name];
+                print("ship " + name + " fuel " + savedShips[name].fuelTank.currentFuel);
             }
         }
     }

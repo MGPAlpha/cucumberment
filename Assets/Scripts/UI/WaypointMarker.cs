@@ -43,12 +43,12 @@ public class WaypointMarker : MonoBehaviour
             }
         }
 
-        Debug.Log("screen pos " + screenPos);
+        // Debug.Log("screen pos " + screenPos);
         Vector3[] parentCorners = new Vector3[4];
         parent.GetWorldCorners(parentCorners);
         Rect parentRect = new Rect(parentCorners[0].x, parentCorners[0].y, parentCorners[2].x - parentCorners[0].x, parentCorners[2].y - parentCorners[0].y);
 
-        Debug.Log(parent.name + " Rect: " + parentCorners);
+        // Debug.Log(parent.name + " Rect: " + parentCorners);
 
         Vector2 clampedScreenPos;
 
@@ -72,7 +72,7 @@ public class WaypointMarker : MonoBehaviour
         borderChange.x = FloatExtension.SignWithZero(borderChange.x);
         borderChange.y = FloatExtension.SignWithZero(borderChange.y);
 
-        Debug.Log("Border change " + borderChange);
+        // Debug.Log("Border change " + borderChange);
 
         float targetRotation;
 

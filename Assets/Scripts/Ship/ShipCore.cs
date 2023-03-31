@@ -76,7 +76,7 @@ public class ShipCore : MonoBehaviour
     {
         Vector2 smoothedTurning = turnInput;
         if (collisionMode) {
-            print("rb velocity " + _rb.angularVelocity.magnitude);
+            // print("rb velocity " + _rb.angularVelocity.magnitude);
             if (collisionTime > 2 && _rb.angularVelocity.magnitude < .3) {
                 collisionMode = false;
                 _rb.velocity = Vector3.zero;
@@ -95,7 +95,7 @@ public class ShipCore : MonoBehaviour
             if (encumbermentSystem) {
                 
                 encumbermentFactor = encumbermentSystem.SpeedRatio;
-                Debug.Log(encumbermentFactor);
+                // Debug.Log(encumbermentFactor);
             }
             
             float speedTarget = baseMaxSpeed * (throttle + (useBoost ? boostSpeedFactor : 0)) * encumbermentFactor;
