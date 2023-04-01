@@ -26,6 +26,11 @@ public class SpaceDialogueManager : MonoBehaviour
         runner = GetComponent<DialogueRunner>();
     }
 
+    [YarnCommand("waitRealtime")]
+    public static IEnumerator YarnWaitRealTime(float seconds) {
+        yield return new WaitForSecondsRealtime(seconds);
+    }
+
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>

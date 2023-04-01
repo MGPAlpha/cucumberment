@@ -5,6 +5,27 @@ tags:
 ...
 Huh?
 Where am I?
+<<showSoloCharacter "CharacterDisplay" "Umbra">>
+Umbra: I don't recognize this planet...
+Umbra: How did I get out here??
+Umbra: <i>The last thing I remember is... flying?</i>
+Umbra: <i>I'm a pilot though, that could mean anything.</i>
+Umbra: <i>I'm pretty low on fuel. My best chance now is to put out a distress call.</i>
+Umbra: Mayday! Mayday! Anybody out there?
+Umbra: I'm not sure exactly where I am, and I could use some help!
+<<waitRealtime 3>>
+Radio: **bzzzt**
+Radio: **crackle** **crackle**
+Radio: Attention Mayday, this is Greenhouse Station. Please identify!
+Umbra: I'm Umbra, from Halenforth Shipyard in the Resodahn system.
+<<showTwoCharacters "CharacterDisplay" "Umbra" "Ivy">>
+Radio: I read you Umbra, my name's Ivy.
+Ivy: I don't think I've heard of Resodahn, but I'm sure we can get you sorted out.
+Ivy: From my scans, it looks like you should be close enough to Greenhouse Station to make it there in one piece. I'll send you our coordinates.
+Ivy: Is it fair to assume you know how to fly a ship?
+Umbra: Yeah, I'm familiar. Just throttle up and down with <b>W</b> and <b>S</b>, maneuver with <b>Mouse</b>, and roll with <b>A</b> and <b>D</b>
+Ivy: Good. I'll greet you when you arrive at the station. Good luck.
+<<ignoreFuelBurn "Player Controller" true>>
 
 <<startQuest "Game Start">>
 
