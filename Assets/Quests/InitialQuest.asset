@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b130517d56ae2408e90cdfcb48f167, type: 3}
+  m_Name: InitialQuest
+  m_EditorClassIdentifier: 
+  questName: Game Start
+  completeQuestsRequired: []
+  startDialogue:
+  - dialogueNodeName: GameStart
+    characterName: 
+    blockNormalDialogue: 0
+    dialoguePrompt: 
+    inSpace: 1
+    spaceAutomatic: 1
+    spaceLocation: {x: 0, y: 0, z: 0}
+    spaceRadius: Infinity
+  stages: []

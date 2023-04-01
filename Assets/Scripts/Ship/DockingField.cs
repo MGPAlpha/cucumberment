@@ -63,6 +63,12 @@ public class DockingField : MonoBehaviour
         }
     }
 
+    public static void SetCurrentStation(string name, string scene, bool interior) {
+        dockedStationName = name;
+        if (scene != "") dockedStationScene = scene;
+        inStation = interior;
+    }
+
     public static void SaveLocation() {
         PlayerPrefs.SetString("dockedStation", dockedStationName);
         PlayerPrefs.SetString("dockedScene", dockedStationScene);

@@ -79,7 +79,7 @@ public class AsteroidVolume : MonoBehaviour
         for (int i = 0; i < AsteroidCount; i++) {
             GeneratedAsteroid currPrefab = asteroidPrefabs[i % asteroidPrefabs.Count];
 
-            Transform newAsteroid = Instantiate(currPrefab.transform, new Vector3(Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize)) + FieldCenter.position, Random.rotation);
+            Transform newAsteroid = Instantiate(currPrefab.transform, new Vector3(Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize)) + FieldCenter.position, Random.rotation, transform);
             newAsteroid.GetComponent<GeneratedAsteroid>().Regenerate(this);
         }
         Shader.SetGlobalFloat("_AsteroidFieldSize", FieldSize);

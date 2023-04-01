@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-[RequireComponent(typeof(ShipCore))] 
+ 
 public class FuelManager : MonoBehaviour, IWeightContributor
 {
-    private ShipCore shipCore;
 
     [field: SerializeField] public float Capacity {get; private set;} = 1000; // L
     [SerializeField] private float efficiency = 1; // kJ / Mg
@@ -16,11 +14,6 @@ public class FuelManager : MonoBehaviour, IWeightContributor
 
     public bool CanFly {get => CurrentFuel > 0;}
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        shipCore = GetComponent<ShipCore>();
-    }
 
     public void BurnFuel(float rate, float deltaTime) {
         float actualBurnRate = maxBurnRate/60;

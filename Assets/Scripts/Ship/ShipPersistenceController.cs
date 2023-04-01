@@ -32,9 +32,10 @@ public class ShipPersistenceController : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("Awake");
-        LoadShips();
-        shipsLoaded = true;
+        if (!shipsLoaded) {
+            LoadShips();
+            shipsLoaded = true;
+        }
     }
 
     private static Action backupActiveShips;
@@ -50,11 +51,13 @@ public class ShipPersistenceController : MonoBehaviour
     
     [SerializeField] private bool persistFuel;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
-        Debug.Log(persistentShips["Player"].fuelTank.currentFuel);
+        // Debug.Log(persistentShips["Player"].fuelTank.currentFuel);
         TryGetComponent<FuelManager>(out fuelManager);
         if (persistentShips.ContainsKey(ShipName)) {
             shipData = persistentShips[ShipName];
