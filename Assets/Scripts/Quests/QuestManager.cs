@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Newtonsoft.Json;
 using Yarn.Unity;
@@ -14,6 +15,10 @@ public class QuestManager : MonoBehaviour
     private static Dictionary<QuestData, int> activeQuests = new Dictionary<QuestData, int>();
 
     private static HashSet<QuestDialogue> availableQuestDialogues = new HashSet<QuestDialogue>();
+
+    public static IEnumerable<QuestDialogue> GetAutoStationDialogues(IEnumerable<CharacterData> characters) {
+        return (from dialogue in availableQuestDialogues where characters.Contains(dialogue.character) && dialogue.stationAutomatic select dialogue);
+    }
 
     [SerializeField] private bool inSpace;
 
@@ -36,7 +41,6 @@ public class QuestManager : MonoBehaviour
     {
         UpdateQuestInfo();
         
-        print("avalialbe dialogues: " + availableQuestDialogues.Count);
 
         if (inSpace)
             foreach (QuestDialogue dialogue in availableQuestDialogues) {
@@ -59,7 +63,8 @@ public class QuestManager : MonoBehaviour
             if (completedQuests.Contains(quest)) { // Quest is complete
 
             } else if (activeQuests.ContainsKey(quest)) { // Quest is active
-
+                int questStage = activeQuests[quest];
+                availableQuestDialogues.UnionWith(quest.stages[questStage].stageDialogues);
             } else { // Quest not started
                 if (completedQuests.IsSupersetOf(quest.completeQuestsRequired)) { // Prerequisite quests complete
                     availableQuestDialogues.UnionWith(quest.startDialogue);
@@ -67,6 +72,9 @@ public class QuestManager : MonoBehaviour
             }
 
         }
+
+
+        print("avalialbe dialogues: " + availableQuestDialogues.Count + " " + availableQuestDialogues);
     }
 
     [YarnCommand("startQuest")]

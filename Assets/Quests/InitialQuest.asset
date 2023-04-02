@@ -16,11 +16,23 @@ MonoBehaviour:
   completeQuestsRequired: []
   startDialogue:
   - dialogueNodeName: GameStart
-    characterName: 
+    character: {fileID: 11400000, guid: bb846bd532d2eb968893b22a4a4f9dec, type: 2}
     blockNormalDialogue: 0
     dialoguePrompt: 
+    stationAutomatic: 0
     inSpace: 1
     spaceAutomatic: 1
     spaceLocation: {x: 0, y: 0, z: 0}
     spaceRadius: Infinity
-  stages: []
+  stages:
+  - stageType: 0
+    stageDialogues:
+    - dialogueNodeName: IvyMeetOnStation
+      character: {fileID: 11400000, guid: bb846bd532d2eb968893b22a4a4f9dec, type: 2}
+      blockNormalDialogue: 0
+      dialoguePrompt: 
+      stationAutomatic: 1
+      inSpace: 0
+      spaceAutomatic: 0
+      spaceLocation: {x: 0, y: 0, z: 0}
+      spaceRadius: 0

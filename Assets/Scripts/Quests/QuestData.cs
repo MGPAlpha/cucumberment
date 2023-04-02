@@ -11,9 +11,10 @@ public enum QuestStageType {
 [Serializable]
 public class QuestDialogue {
     public string dialogueNodeName;
-    public string characterName;
+    public CharacterData character;
     public bool blockNormalDialogue = false;
     public string dialoguePrompt;
+    public bool stationAutomatic = false;
 
     public bool inSpace = false;
     public bool spaceAutomatic = false;
