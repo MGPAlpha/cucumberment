@@ -8,8 +8,8 @@ public class ShipCargo : MonoBehaviour, IWeightContributor
     [SerializeField] private ItemLibrary instanceItemLibrary;
     public static ItemLibrary ItemLibrary {get; private set;} 
 
-    [SerializeField] private int capacity = 25;
-    [SerializeField] private int money = 0;
+    [SerializeField] public int Capacity {get; private set;} = 25;
+    [SerializeField] public int Money {get; private set;} = 0;
     public int CurrentLoad { get {
         int quantity = 0;
         foreach (ItemData item in inventory.Keys) {
@@ -18,7 +18,7 @@ public class ShipCargo : MonoBehaviour, IWeightContributor
         return quantity;
     }}
 
-    public int OpenSlots { get => capacity - CurrentLoad; }
+    public int OpenSlots { get => Capacity - CurrentLoad; }
 
     private Dictionary<ItemData, int> inventory = new Dictionary<ItemData, int>();
     
@@ -47,8 +47,8 @@ public class ShipCargo : MonoBehaviour, IWeightContributor
     }
 
     public void LoadCargoData(CargoData data) {
-        capacity = data.capacity;
-        money = data.money;
+        Capacity = data.capacity;
+        Money = data.money;
         inventory = new Dictionary<ItemData, int>();
         foreach (string itemName in data.inventory.Keys) {
             ItemData item = ItemLibrary.items.Find(i => i.itemName == itemName);
@@ -59,8 +59,8 @@ public class ShipCargo : MonoBehaviour, IWeightContributor
     }
 
     public void FillCargoData(CargoData data) {
-        data.capacity = capacity;
-        data.money = money;
+        data.capacity = Capacity;
+        data.money = Money;
         data.inventory = new Dictionary<string, int>();
         foreach (ItemData item in inventory.Keys) {
             data.inventory[item.itemName] = inventory[item];

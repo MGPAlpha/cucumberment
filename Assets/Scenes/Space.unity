@@ -1934,7 +1934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShipName: Player
   persistFuel: 1
-  persistCargo: 0
+  persistCargo: 1
 --- !u!114 &1001223542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,8 +1975,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instanceItemLibrary: {fileID: 11400000, guid: cbfdd88b0f1553b388a9567deea3acd0,
     type: 2}
-  capacity: 25
-  money: 0
 --- !u!114 &1001223545
 MonoBehaviour:
   m_ObjectHideFlags: 0
