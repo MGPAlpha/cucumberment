@@ -83,6 +83,11 @@ public class JobTerminalUI : MonoBehaviour
         categoryUI.text = categoryName;
     }
 
+    private void TriggerActionError(string error) {
+        errorText.text = error;
+        errorText.gameObject.SetActive(true);
+    }
+
     private void LoadJob(JobData job) {
         fromText.text = job.fromStation;
         toText.text = job.toStation;
@@ -109,7 +114,7 @@ public class JobTerminalUI : MonoBehaviour
             return; // Log error here later
         }
         if (PlayerDataSingleton.Cargo.OpenSlots < selectedJob.TotalItems) {
-            // Log error for no room in cargo
+            TriggerActionError("Not enough room in your cargo for all these items. Please unload more cargo and try again.");
             return;
         }
         JobManager.SetActiveJob(selectedJob);
@@ -122,12 +127,15 @@ public class JobTerminalUI : MonoBehaviour
 
     public void TryCancelJob() {
         if (selectedJob == null) return;
+        print(selectedJob.uniqueName);
         if (JobManager.ActiveJob != selectedJob) {
             // Maybe log error for trying to cancel inactive job
             return;
         }
         if (selectedJob.uniqueName != "" && selectedJob.uniqueName != null) {
             // Log error cannot cancel job from quest
+            TriggerActionError("This job cannot be cancelled. If you wish to restart it, please use the 'Restart' button instead");
+            return;
         }
         // dont actually need job cancelling yet but button gives appearance of functionality
     }

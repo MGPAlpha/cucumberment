@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Greenhouse.unity
     guid: 2a973316d4147c886a9550082c1573dc
+  - enabled: 1
+    path: Assets/Scenes/Hospital.unity
+    guid: 68a6d7e8f64f8a5a89e312008115a386
   m_configObjects: {}

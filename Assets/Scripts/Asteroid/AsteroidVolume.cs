@@ -35,6 +35,16 @@ public class AsteroidVolume : MonoBehaviour
         }
     }
 
+    private List<GeneratedAsteroid> spawnedAsteroids;
+
+    public void RespawnAllAsteroids() {
+        foreach(GeneratedAsteroid ast in spawnedAsteroids) {
+            ast.transform.SetPositionAndRotation(new Vector3(Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize)) + FieldCenter.position, Random.rotation);
+            ast.Regenerate(this);
+
+        }
+    }
+
     private void RespawnOutOfBoundsAsteroids() {
         Vector3 newCenter = FieldCenter.position;
         Vector3 outOfBoundsDisp = newCenter - lastGenerationCenter;
@@ -76,10 +86,13 @@ public class AsteroidVolume : MonoBehaviour
     }
 
     void InitializeField() {
+        spawnedAsteroids = new List<GeneratedAsteroid>();
         for (int i = 0; i < AsteroidCount; i++) {
             GeneratedAsteroid currPrefab = asteroidPrefabs[i % asteroidPrefabs.Count];
 
             Transform newAsteroid = Instantiate(currPrefab.transform, new Vector3(Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize), Random.Range(-FieldSize, FieldSize)) + FieldCenter.position, Random.rotation, transform);
+            spawnedAsteroids.Add(newAsteroid.GetComponent<GeneratedAsteroid>());
+
             newAsteroid.GetComponent<GeneratedAsteroid>().Regenerate(this);
         }
         Shader.SetGlobalFloat("_AsteroidFieldSize", FieldSize);

@@ -43,6 +43,9 @@ public class DockingField : MonoBehaviour
             PlayerShipController.Main.transform.position = spawnPoint.transform.position;
             PlayerShipController.Main.transform.rotation = spawnPoint.transform.rotation;
         }
+        foreach(AsteroidVolume asteroidVolume in GameObject.FindObjectsOfType<AsteroidVolume>()) {
+            asteroidVolume.RespawnAllAsteroids();
+        }
     }
 
     // Update is called once per frame
