@@ -26,6 +26,7 @@ MonoBehaviour:
     spaceRadius: Infinity
   stages:
   - stageType: 0
+    enabledFeatures: []
     stageDialogues:
     - dialogueNodeName: IvyMeetOnStation
       character: {fileID: 11400000, guid: bb846bd532d2eb968893b22a4a4f9dec, type: 2}
@@ -36,3 +37,32 @@ MonoBehaviour:
       spaceAutomatic: 0
       spaceLocation: {x: 0, y: 0, z: 0}
       spaceRadius: 0
+    stageJobs: []
+  - stageType: 0
+    enabledFeatures:
+    - jobTerminal
+    stageDialogues: []
+    stageJobs:
+    - uniqueName: firstJobEver
+      fromStation: Greenhouse
+      toStation: Hospital
+      limitedTime: 0
+      timeLimit: 0
+      pay: 100
+      items:
+      - count: 15
+        item: {fileID: 11400000, guid: d3cf5bbd2563c4e78b74885cf0e45cfc, type: 2}
+      progressQuestOnAccept: {fileID: 11400000}
+  - stageType: 0
+    enabledFeatures: []
+    stageDialogues:
+    - dialogueNodeName: IvyFirstJobAccepted
+      character: {fileID: 11400000, guid: bb846bd532d2eb968893b22a4a4f9dec, type: 2}
+      blockNormalDialogue: 0
+      dialoguePrompt: 
+      stationAutomatic: 1
+      inSpace: 0
+      spaceAutomatic: 0
+      spaceLocation: {x: 0, y: 0, z: 0}
+      spaceRadius: 0
+    stageJobs: []

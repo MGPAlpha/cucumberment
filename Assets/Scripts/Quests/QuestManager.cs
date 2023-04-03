@@ -16,8 +16,23 @@ public class QuestManager : MonoBehaviour
 
     private static HashSet<QuestDialogue> availableQuestDialogues = new HashSet<QuestDialogue>();
 
+    private static HashSet<string> enabledFeatures = new HashSet<string>();
+    private static HashSet<JobData> availableJobsFromQuests = new HashSet<JobData>();
+
     public static IEnumerable<QuestDialogue> GetAutoStationDialogues(IEnumerable<CharacterData> characters) {
         return (from dialogue in availableQuestDialogues where characters.Contains(dialogue.character) && dialogue.stationAutomatic select dialogue);
+    }
+
+    public static IEnumerable<QuestDialogue> GetCharacterStationDialogues(CharacterData character) {
+        return (from dialogue in availableQuestDialogues where dialogue.character == character && !dialogue.inSpace && !dialogue.stationAutomatic select dialogue);
+    }
+
+    public static IEnumerable<JobData> GetStationQuestJobs(string station) {
+        return (from job in availableJobsFromQuests where job.fromStation == station select job);
+    }
+
+    public static bool IsFeatureEnabled(string featureName) {
+        return enabledFeatures.Contains(featureName);
     }
 
     [SerializeField] private bool inSpace;
@@ -58,13 +73,18 @@ public class QuestManager : MonoBehaviour
 
     private static void UpdateQuestInfo() {
         availableQuestDialogues = new HashSet<QuestDialogue>();
+        enabledFeatures = new HashSet<string>();
+        availableJobsFromQuests = new HashSet<JobData>();
         foreach (QuestData quest in questLibrary.quests) { // Check all quests
 
             if (completedQuests.Contains(quest)) { // Quest is complete
 
             } else if (activeQuests.ContainsKey(quest)) { // Quest is active
                 int questStage = activeQuests[quest];
-                availableQuestDialogues.UnionWith(quest.stages[questStage].stageDialogues);
+                QuestStage currentStage = quest.stages[questStage];
+                availableQuestDialogues.UnionWith(currentStage.stageDialogues);
+                enabledFeatures.UnionWith(currentStage.enabledFeatures);
+                availableJobsFromQuests.UnionWith(currentStage.stageJobs);
             } else { // Quest not started
                 if (completedQuests.IsSupersetOf(quest.completeQuestsRequired)) { // Prerequisite quests complete
                     availableQuestDialogues.UnionWith(quest.startDialogue);
@@ -72,17 +92,34 @@ public class QuestManager : MonoBehaviour
             }
 
         }
+        print("Active quest count " + activeQuests.Count);
+        print("Available quest jobs " + availableJobsFromQuests.Count);
+        print("Active jobs from greenhouse " + GetStationQuestJobs("Greenhouse").Count());
 
-
-        print("avalialbe dialogues: " + availableQuestDialogues.Count + " " + availableQuestDialogues);
     }
 
     [YarnCommand("startQuest")]
-    private static void StartQuest(string questName) {
+    public static void StartQuest(string questName) {
         QuestData quest = questLibrary.quests.Find(q => q.questName == questName);
         if (!quest) return;
         if (!activeQuests.ContainsKey(quest) && !completedQuests.Contains(quest)) {
             activeQuests[quest] = 0;
+        }
+        UpdateQuestInfo();
+    }
+
+    [YarnCommand("progressQuest")]
+    public static void ProgressQuest(string questName) {
+        QuestData quest = questLibrary.quests.Find(q => q.questName == questName);
+        if (!quest) return;
+        if (activeQuests.ContainsKey(quest) && !completedQuests.Contains(quest)) {
+            int questCurrentStage = activeQuests[quest];
+            if (questCurrentStage >= quest.stages.Count - 1) {
+                activeQuests.Remove(quest);
+                completedQuests.Add(quest);
+            } else {
+                activeQuests[quest]++;
+            }
         }
         UpdateQuestInfo();
     }

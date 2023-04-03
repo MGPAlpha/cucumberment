@@ -9,6 +9,11 @@ using UnityEngine.Events;
 using Yarn.Unity;
 using TMPro;
 
+public enum MenuMode {
+    MainMenu,
+    CharacterDialogue
+}
+
 public class StationMenu : MonoBehaviour
 {
 
@@ -16,10 +21,14 @@ public class StationMenu : MonoBehaviour
     [SerializeField] private GameObject menuItemPrefab;
     [SerializeField] private GameObject menuOptionsPanel;
     [SerializeField] private DialogueRunner dialogueRunner;
+    [SerializeField] private JobTerminalUI jobTerminal;
 
     [SerializeField] private List<CharacterData> availableCharacters;
 
     private CanvasGroup canvasGroup;
+
+    private MenuMode menuMode = MenuMode.MainMenu;
+    private CharacterData selectedCharacter;
 
     private Queue<QuestDialogue> autoDialogueQueue = new Queue<QuestDialogue>();
     private HashSet<QuestDialogue> queuedAutoDialogues = new HashSet<QuestDialogue>();
@@ -45,22 +54,50 @@ public class StationMenu : MonoBehaviour
     public void ReturnControlToMenu() {
         LoadAutoDialogues();
         CharacterDisplay.Main.HideDisplay();
-        BuildActionMenu();
+        if (menuMode == MenuMode.CharacterDialogue) BuildCharacterMenu(selectedCharacter);
+        else BuildActionMenu();
         canvasGroup.interactable = true;
     }
 
     void BuildActionMenu() {
         ClearActionMenu();
+        menuMode = MenuMode.MainMenu;
         if (autoDialogueQueue.Count > 0) {
             QuestDialogue dialogue = autoDialogueQueue.Dequeue();
             TriggerDialogue(dialogue.character, dialogue);
             return;
         }
+
+        CreateMenuItemIfFeature("Access VernaCo Terminal", delegate {
+            jobTerminal.InitializeDisplay(currentStation);
+            GiveUpMenuControl();
+        }, (RectTransform)menuOptionsPanel.transform, "jobTerminal");
+
         foreach (CharacterData character in availableCharacters) {
             CreateMenuItem("Speak to " + character.name, new UnityAction(delegate {
-                    TriggerDialogue(character, null);
+                    BuildCharacterMenu(character);
                 }), (RectTransform)menuOptionsPanel.transform);
         }
+    }
+
+    void BuildCharacterMenu(CharacterData character) {
+        ClearActionMenu();
+        menuMode = MenuMode.CharacterDialogue;
+        selectedCharacter = character;
+        CreateMenuItem("Back", new UnityAction(delegate {
+                BuildActionMenu();
+                CharacterDisplay.Main.HideDisplay();
+            }), (RectTransform)menuOptionsPanel.transform);
+        CreateMenuItem("Make Small Talk", new UnityAction(delegate {
+                TriggerDialogue(character, null);
+            }), (RectTransform)menuOptionsPanel.transform);
+        foreach (QuestDialogue dialogue in QuestManager.GetCharacterStationDialogues(character)) {
+            CreateMenuItem(dialogue.dialoguePrompt, new UnityAction(delegate {
+                    TriggerDialogue(character, dialogue);
+                }), (RectTransform)menuOptionsPanel.transform);
+        }
+        CharacterDisplay.Main.ShowSoloCharacter(character.name);
+
     }
 
     void ClearActionMenu() {
@@ -80,6 +117,10 @@ public class StationMenu : MonoBehaviour
 
         dialogueRunner.StartDialogue(dialogueName);
         CharacterDisplay.Main.ShowSoloCharacter(character.name);
+        GiveUpMenuControl();
+    }
+
+    private void GiveUpMenuControl() {
         canvasGroup.interactable = false;
     }
 
@@ -101,5 +142,11 @@ public class StationMenu : MonoBehaviour
         TextMeshProUGUI itemText = newMenuItem.GetComponentInChildren<TextMeshProUGUI>();
         itemText.text = text;
         newButton.onClick.AddListener(onClick);
+    }
+
+    private void CreateMenuItemIfFeature(string text, UnityAction onClick, RectTransform parent, string featureName) {
+        if (QuestManager.IsFeatureEnabled(featureName)) {
+            CreateMenuItem(text, onClick, parent);
+        }
     }
 }

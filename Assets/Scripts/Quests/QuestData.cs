@@ -25,8 +25,10 @@ public class QuestDialogue {
 [Serializable]
 public class QuestStage {
     public QuestStageType stageType;
+    public List<string> enabledFeatures;
 
     public List<QuestDialogue> stageDialogues;
+    public List<JobData> stageJobs;
 }
 
 [CreateAssetMenu(menuName = "Quests/Quest", fileName = "New Quest")]

@@ -1,0 +1,16 @@
+﻿title: IvyFirstJobAccepted
+tags:
+---
+
+Ivy: Good to see you were able to snag a job!
+Ivy: You should just need to refill your fuel tank, and you'll be good to go.
+Ivy: Fuel does cost money, but I'll give you a few Cucoins to get you started.
+Ivy: Once you fuel up, you're ready to leave the station and deliver the cucumbers to Hospital Station.
+Umbra: What happens if my fuel runs out?
+Ivy: Oh, I forgot to mention!
+Ivy: All the system's stations have short range teleporters that link to your ship when you dock.
+Ivy: If you run out of fuel, you can always hold <b>R</b> to teleport back to the last station you visited.
+Ivy: Be aware though, the teleporters can't bring your cargo with you, so I'd recommend using it in an emergency.
+<<progressQuest "Game Start">>
+
+===
