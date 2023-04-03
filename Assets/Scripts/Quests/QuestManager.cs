@@ -31,6 +31,11 @@ public class QuestManager : MonoBehaviour
         return (from job in availableJobsFromQuests where job.fromStation == station select job);
     }
 
+    public static JobData FindJobByUniqueName(string jobName) {
+        print("Available jobs " + availableJobsFromQuests.Count);
+        return availableJobsFromQuests.First((job => job.uniqueName == jobName));
+    }
+
     public static bool IsFeatureEnabled(string featureName) {
         return enabledFeatures.Contains(featureName);
     }
@@ -49,12 +54,13 @@ public class QuestManager : MonoBehaviour
             LoadQuests();
             questsLoaded = true;
         }
+
+        UpdateQuestInfo();
     } 
     
     // Start is called before the first frame update
     void Start()
     {
-        UpdateQuestInfo();
         
 
         if (inSpace)
@@ -77,17 +83,28 @@ public class QuestManager : MonoBehaviour
         availableJobsFromQuests = new HashSet<JobData>();
         foreach (QuestData quest in questLibrary.quests) { // Check all quests
 
+            bool questComplete = completedQuests.Contains(quest);
+            bool questActive = activeQuests.ContainsKey(quest);
+
             if (completedQuests.Contains(quest)) { // Quest is complete
 
             } else if (activeQuests.ContainsKey(quest)) { // Quest is active
                 int questStage = activeQuests[quest];
                 QuestStage currentStage = quest.stages[questStage];
                 availableQuestDialogues.UnionWith(currentStage.stageDialogues);
-                enabledFeatures.UnionWith(currentStage.enabledFeatures);
-                availableJobsFromQuests.UnionWith(currentStage.stageJobs);
             } else { // Quest not started
                 if (completedQuests.IsSupersetOf(quest.completeQuestsRequired)) { // Prerequisite quests complete
                     availableQuestDialogues.UnionWith(quest.startDialogue);
+                }
+            }
+
+            if (questComplete || questActive) {
+                for (int i = 0; i < quest.stages.Count; i++) {
+                    if (questComplete || i <= activeQuests[quest]) {
+                        QuestStage currentStage = quest.stages[i];
+                        enabledFeatures.UnionWith(currentStage.enabledFeatures);
+                        availableJobsFromQuests.UnionWith(currentStage.stageJobs);
+                    }
                 }
             }
 
@@ -133,6 +150,7 @@ public class QuestManager : MonoBehaviour
         if (PlayerPrefs.HasKey("activeQuests")) {
             activeQuestStrings = JsonConvert.DeserializeObject<Dictionary<string, int>>(PlayerPrefs.GetString("activeQuests"));
         }
+        // print("Quest progress " + activeQuestStrings["Game Start"]);
         if (completedQuestStrings.Count > 0 || activeQuestStrings.Count > 0) {
             foreach (QuestData quest in questLibrary.quests) {
                 if (completedQuestStrings.Contains(quest.questName)) {

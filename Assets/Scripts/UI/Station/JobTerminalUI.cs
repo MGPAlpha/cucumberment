@@ -108,7 +108,14 @@ public class JobTerminalUI : MonoBehaviour
         if (JobManager.ActiveJob != null) {
             return; // Log error here later
         }
+        if (PlayerDataSingleton.Cargo.OpenSlots < selectedJob.TotalItems) {
+            // Log error for no room in cargo
+            return;
+        }
         JobManager.SetActiveJob(selectedJob);
+        foreach (ItemQuantity item in selectedJob.items) {
+            PlayerDataSingleton.Cargo.AddItem(item.item, item.count);
+        }
         if (selectedJob.progressQuestOnAccept) QuestManager.ProgressQuest(selectedJob.progressQuestOnAccept.questName);
         InitializeDisplay(station);
     }

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 [Serializable]
 public class ShipData {
     public FuelTankData fuelTank;
+    public CargoData cargoData;
 }
 
 [Serializable]
@@ -14,6 +15,13 @@ public class FuelTankData {
     public float currentFuel;
     public float density;
     public float efficiency;
+}
+
+[Serializable]
+public class CargoData {
+    public Dictionary<string, int> inventory;
+    public int capacity;
+    public int money;
 }
 
 public class ShipPersistenceController : MonoBehaviour
@@ -44,12 +52,14 @@ public class ShipPersistenceController : MonoBehaviour
     private static bool shipsLoaded = false;
     
     private FuelManager fuelManager;
+    private ShipCargo shipCargo;
 
     private ShipData shipData;
 
     [SerializeField] private string ShipName = "default";
     
     [SerializeField] private bool persistFuel;
+    [SerializeField] private bool persistCargo;
 
     
 
@@ -59,15 +69,33 @@ public class ShipPersistenceController : MonoBehaviour
         Debug.Log("Start");
         // Debug.Log(persistentShips["Player"].fuelTank.currentFuel);
         TryGetComponent<FuelManager>(out fuelManager);
+        TryGetComponent<ShipCargo>(out shipCargo);
         if (persistentShips.ContainsKey(ShipName)) {
             shipData = persistentShips[ShipName];
-            if (fuelManager && persistFuel && shipData.fuelTank != null) fuelManager.LoadFuelTankData(shipData.fuelTank);
+            if (fuelManager && persistFuel) {
+                if (shipData.fuelTank != null) fuelManager.LoadFuelTankData(shipData.fuelTank);
+                else {
+                    shipData.fuelTank = new FuelTankData();
+                    fuelManager.FillFuelTankData(shipData.fuelTank);
+                }
+            }
+            if (shipCargo && persistCargo) {
+                if (shipData.cargoData != null) shipCargo.LoadCargoData(shipData.cargoData);
+                else {
+                    shipData.cargoData = new CargoData();
+                    shipCargo.FillCargoData(shipData.cargoData);
+                }
+            }
         } else {
             shipData = new ShipData();
             persistentShips[ShipName] = shipData;
             if (fuelManager && persistFuel) {
                 shipData.fuelTank = new FuelTankData();
                 fuelManager.FillFuelTankData(shipData.fuelTank);
+            }
+            if (shipCargo && persistCargo) {
+                shipData.cargoData = new CargoData();
+                shipCargo.FillCargoData(shipData.cargoData);
             }
         }
     }
@@ -92,6 +120,9 @@ public class ShipPersistenceController : MonoBehaviour
         if (fuelManager && persistFuel) {
             fuelManager.FillFuelTankData(shipData.fuelTank);
             print("Current fuel on destroy" + shipData.fuelTank.currentFuel);
+        }
+        if (shipCargo && persistCargo) {
+            shipCargo.FillCargoData(shipData.cargoData);
         }
     }
 

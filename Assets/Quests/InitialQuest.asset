@@ -66,3 +66,7 @@ MonoBehaviour:
       spaceLocation: {x: 0, y: 0, z: 0}
       spaceRadius: 0
     stageJobs: []
+  - stageType: 0
+    enabledFeatures: []
+    stageDialogues: []
+    stageJobs: []

@@ -8,5 +8,6 @@ public static class SaveSystem
         ShipPersistenceController.SaveShips();
         DockingField.SaveLocation();
         QuestManager.SaveQuests();
+        JobManager.SaveJobs();
     }
 }
