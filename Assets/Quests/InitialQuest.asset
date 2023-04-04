@@ -67,6 +67,7 @@ MonoBehaviour:
       spaceRadius: 0
     stageJobs: []
   - stageType: 0
-    enabledFeatures: []
+    enabledFeatures:
+    - buyFuel
     stageDialogues: []
     stageJobs: []

@@ -74,10 +74,10 @@ public class StationMenu : MonoBehaviour
             GiveUpMenuControl();
         }, (RectTransform)menuOptionsPanel.transform, "jobTerminal");
 
-        CreateMenuItem("Buy Fuel", delegate {
+        CreateMenuItemIfFeature("Buy Fuel", delegate {
             fuelTerminal.OpenFuelScreen();
             GiveUpMenuControl();
-        }, (RectTransform)menuOptionsPanel.transform);
+        }, (RectTransform)menuOptionsPanel.transform, "buyFuel");
 
         foreach (CharacterData character in availableCharacters) {
             CreateMenuItem("Speak to " + character.name, new UnityAction(delegate {
