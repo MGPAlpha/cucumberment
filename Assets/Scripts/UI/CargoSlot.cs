@@ -13,9 +13,17 @@ public class CargoSlot : MonoBehaviour
     private ItemQuantity item;
 
     public void Init(ItemQuantity item) {
+        Init(item, item.count);
+    }
+
+    public void Init(ItemQuantity item, int currentQuantity) {
         this.item = item;
         cargoIcon.sprite = item.item.itemIcon;
         cargoName.text = item.item.itemName;
-        cargoQuantity.text = "x" + item.count.ToString();
+        if (currentQuantity < item.count) {
+            cargoQuantity.text = "x" + currentQuantity.ToString() + "/" + item.count.ToString();
+        } else {
+            cargoQuantity.text = "x" + item.count.ToString();
+        }
     }
 }

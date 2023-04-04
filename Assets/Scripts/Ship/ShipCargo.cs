@@ -46,6 +46,14 @@ public class ShipCargo : MonoBehaviour, IWeightContributor
         inventory[item] = inventory.GetValueOrDefault(item,0) + quantity;
     }
 
+    public void RemoveItem(ItemData item, int quantity) {
+        inventory[item] = Mathf.Max(0, inventory.GetValueOrDefault(item, 0) - quantity);
+    }
+
+    public int GetItem(ItemData item) {
+        return inventory.GetValueOrDefault(item, 0);
+    }
+
     public void LoadCargoData(CargoData data) {
         Capacity = data.capacity;
         Money = data.money;

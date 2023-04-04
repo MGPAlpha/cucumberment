@@ -24,6 +24,17 @@ public class JobTerminalUI : MonoBehaviour
     [SerializeField] private GameObject cargoItemPrefab;
     [SerializeField] private TextMeshProUGUI cargoWeightText;
 
+    [SerializeField] private GameObject deliveryScreen;
+    [SerializeField] private TextMeshProUGUI deliveryToText;
+    [SerializeField] private TextMeshProUGUI deliveryBasePayText;
+    [SerializeField] private TextMeshProUGUI deliveryActualCargoText;
+    [SerializeField] private TextMeshProUGUI deliveryExpectedCargoText;
+    [SerializeField] private RectTransform deliveryCargoDisplay;
+    [SerializeField] private GameObject missingItemsPenaltyBox;
+    [SerializeField] private GameObject penaltyPerItemBox;
+    [SerializeField] private TextMeshProUGUI penaltyPerItemText;
+    [SerializeField] private TextMeshProUGUI totalPayText;
+
     private string station;
 
     private JobData selectedJob;
@@ -46,6 +57,7 @@ public class JobTerminalUI : MonoBehaviour
     public void InitializeDisplay(string station) {
         this.station = station;
         ClearInfo();
+        ClearDelivery();
         BuildJobList();
         gameObject.SetActive(true);
         print("got here");
@@ -95,9 +107,9 @@ public class JobTerminalUI : MonoBehaviour
         cargoWeightText.text = job.TotalWeight.ToString();
         errorText.gameObject.SetActive(false);
 
-        ClearCargoItems();
+        ClearCargoItems(cargoDisplay);
         foreach (ItemQuantity item in job.items) {
-            AddCargoItem(item);
+            AddCargoItem(item, cargoDisplay);
         }
 
         acceptButton.SetActive(job != JobManager.ActiveJob);
@@ -105,7 +117,64 @@ public class JobTerminalUI : MonoBehaviour
         deliverButton.SetActive(job == JobManager.ActiveJob && job.toStation == station);
 
         selectedJob = job;
+        deliveryScreen.SetActive(false);
         jobInfoPanel.SetActive(true);
+    }
+
+    private int deliveryActualPay;
+
+    private void OpenDeliveryScreen(JobData job) {
+        deliveryToText.text = job.toStation;
+        deliveryBasePayText.text = job.pay.ToString();
+
+        int jobPay = job.pay;
+        int totalExpectedItems = job.TotalItems;
+        int actualItemCount = 0;
+
+        ShipCargo inventory = PlayerDataSingleton.Cargo;
+
+        ClearCargoItems(deliveryCargoDisplay);
+        foreach (ItemQuantity item in job.items) {
+            actualItemCount += Mathf.Min(item.count, inventory.GetItem(item.item));
+        }
+
+        deliveryActualCargoText.text = actualItemCount.ToString();
+        deliveryExpectedCargoText.text = totalExpectedItems.ToString();
+
+        foreach (ItemQuantity item in job.items) {
+            AddCargoItem(item, deliveryCargoDisplay, true);
+        }
+
+        bool itemsMissing = actualItemCount < totalExpectedItems;
+        float penaltyPerMissing = -2f/totalExpectedItems;
+
+        missingItemsPenaltyBox.SetActive(itemsMissing);
+        penaltyPerItemBox.SetActive(itemsMissing);
+        penaltyPerItemText.text = penaltyPerMissing.ToString("P1");
+
+        float penaltyRatio = 1;
+        if (itemsMissing) {
+            penaltyRatio *= .75f;
+
+            penaltyRatio *= 1 + penaltyPerMissing * (totalExpectedItems - actualItemCount);
+        }
+
+        deliveryActualPay = (int)(job.pay * penaltyRatio);
+        totalPayText.text = deliveryActualPay.ToString();
+
+        deliveryScreen.SetActive(true);
+        jobInfoPanel.SetActive(false);
+    }
+
+    public void ConfirmDelivery() {
+        ShipCargo cargo = PlayerDataSingleton.Cargo;
+        cargo.AddMoney(deliveryActualPay);
+        foreach (ItemQuantity item in selectedJob.items) {
+            cargo.RemoveItem(item.item, item.count);
+        }
+        JobManager.SetActiveJob(null);
+        selectedJob = null;
+        InitializeDisplay(station);
     }
 
     public void TryAcceptJob() {
@@ -142,16 +211,20 @@ public class JobTerminalUI : MonoBehaviour
 
     public void TryDeliverJob() {
         if (selectedJob == null) return;
-        
+        OpenDeliveryScreen(selectedJob);
         // Trigger delivery option
     }
 
-    private void AddCargoItem(ItemQuantity item) {
+    private void AddCargoItem(ItemQuantity item, Transform cargoDisplay, bool includeCurrentCount = false) {
         CargoSlot cargoUI = Instantiate(cargoItemPrefab, Vector3.zero, Quaternion.identity, cargoDisplay).GetComponent<CargoSlot>();
-        cargoUI.Init(item);
+        if (includeCurrentCount) {
+            cargoUI.Init(item, PlayerDataSingleton.Cargo.GetItem(item.item));
+        } else {
+            cargoUI.Init(item);
+        }
     }
 
-    private void ClearCargoItems() {
+    private void ClearCargoItems(Transform cargoDisplay) {
         while (cargoDisplay.childCount > 0) { // Needs destroyimmediate to not infinitely loop
             DestroyImmediate(cargoDisplay.GetChild(0).gameObject);
         }
@@ -159,6 +232,10 @@ public class JobTerminalUI : MonoBehaviour
 
     private void ClearInfo() {
         jobInfoPanel.SetActive(false);
+    }
+
+    private void ClearDelivery() {
+        deliveryScreen.SetActive(false);
     }
 
 
