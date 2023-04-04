@@ -22,6 +22,7 @@ public class StationMenu : MonoBehaviour
     [SerializeField] private GameObject menuOptionsPanel;
     [SerializeField] private DialogueRunner dialogueRunner;
     [SerializeField] private JobTerminalUI jobTerminal;
+    [SerializeField] private FuelTerminal fuelTerminal;
 
     [SerializeField] private List<CharacterData> availableCharacters;
 
@@ -72,6 +73,11 @@ public class StationMenu : MonoBehaviour
             jobTerminal.InitializeDisplay(currentStation);
             GiveUpMenuControl();
         }, (RectTransform)menuOptionsPanel.transform, "jobTerminal");
+
+        CreateMenuItem("Buy Fuel", delegate {
+            fuelTerminal.OpenFuelScreen();
+            GiveUpMenuControl();
+        }, (RectTransform)menuOptionsPanel.transform);
 
         foreach (CharacterData character in availableCharacters) {
             CreateMenuItem("Speak to " + character.name, new UnityAction(delegate {

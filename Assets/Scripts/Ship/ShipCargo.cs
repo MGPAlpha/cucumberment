@@ -74,4 +74,13 @@ public class ShipCargo : MonoBehaviour, IWeightContributor
         }
         return weight;
     }
+
+
+    public void AddMoney(int amount) {
+        Money += amount;
+    }
+
+    public void SpendMoney(int amount) {
+        Money -= amount;
+    }
 }

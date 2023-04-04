@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShipEncumbermentSystem : MonoBehaviour
 {
     [SerializeField] private float baseWeight = 20;
-    private float currentWeight;
+    public float CurrentWeight {get; private set;}
 
     private IWeightContributor[] weightContributors;
 
@@ -17,9 +17,9 @@ public class ShipEncumbermentSystem : MonoBehaviour
     }
 
     private void UpdateWeight() {
-        currentWeight = baseWeight;
+        CurrentWeight = baseWeight;
         foreach (IWeightContributor wc in weightContributors) {
-            currentWeight += wc.GetWeight();
+            CurrentWeight += wc.GetWeight();
         }
     }
 
@@ -29,5 +29,5 @@ public class ShipEncumbermentSystem : MonoBehaviour
         UpdateWeight();
     }
 
-    public float SpeedRatio { get => baseWeight / currentWeight; }
+    public float SpeedRatio { get => baseWeight / CurrentWeight; }
 }

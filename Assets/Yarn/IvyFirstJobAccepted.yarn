@@ -5,6 +5,7 @@ tags:
 Ivy: Good to see you were able to snag a job!
 Ivy: You should just need to refill your fuel tank, and you'll be good to go.
 Ivy: Fuel does cost money, but I'll give you a few Cucoins to get you started.
+<<givePlayerMoney 100>>
 Ivy: Once you fuel up, you're ready to leave the station and deliver the cucumbers to Hospital Station.
 Umbra: What happens if my fuel runs out?
 Ivy: Oh, I forgot to mention!

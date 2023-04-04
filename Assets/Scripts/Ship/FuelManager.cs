@@ -9,7 +9,7 @@ public class FuelManager : MonoBehaviour, IWeightContributor
 
     [field: SerializeField] public float Capacity {get; private set;} = 1000; // L
     [SerializeField] private float efficiency = 1; // kJ / Mg
-    [SerializeField] private float density = .01f; // Mg/L
+    [field: SerializeField] public float Density {get; private set;} = .01f; // Mg/L
     [SerializeField] private float maxBurnRate = 2; // kJ / min
 
     [field: SerializeField] public float CurrentFuel {get; private set;} = 1000; // L
@@ -24,13 +24,18 @@ public class FuelManager : MonoBehaviour, IWeightContributor
         ignoreBurn = val;
     }
 
+    public void AddFuel(float amount) {
+        CurrentFuel += amount;
+        CurrentFuel = Mathf.Min(CurrentFuel, Capacity);
+    }
+
     public void BurnFuel(float rate, float deltaTime) {
         if (ignoreBurn) return;
         float actualBurnRate = maxBurnRate/60;
 
         float kj = actualBurnRate * deltaTime * rate;
         float mass = kj / efficiency;
-        float volume = mass / density;
+        float volume = mass / Density;
 
         CurrentFuel -= volume;
         CurrentFuel = Mathf.Max(CurrentFuel, 0);
@@ -43,18 +48,18 @@ public class FuelManager : MonoBehaviour, IWeightContributor
     }
 
     public float GetWeight() {
-        return CurrentFuel * density;
+        return CurrentFuel * Density;
     }
 
     public void LoadFuelTankData(FuelTankData data) {
         efficiency = data.efficiency;
         CurrentFuel = data.currentFuel;
-        density = data.density;    
+        Density = data.density;    
     }
 
     public void FillFuelTankData(FuelTankData data) {
         data.efficiency = efficiency;
         data.currentFuel = CurrentFuel;
-        data.density = density;
+        data.density = Density;
     }
 }

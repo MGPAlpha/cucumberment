@@ -20,6 +20,6 @@ public class StatsDisplay : MonoBehaviour
     {
         coinText.text = PlayerDataSingleton.Cargo.Money.ToString();
         cargoText.text = PlayerDataSingleton.Cargo.CurrentLoad.ToString();
-        weightText.text = PlayerDataSingleton.Cargo.GetWeight().ToString();
+        weightText.text = PlayerDataSingleton.EncumbermentSystem.CurrentWeight.ToString("F1");
     }
 }

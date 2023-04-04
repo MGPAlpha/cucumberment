@@ -15,9 +15,10 @@ public class FuelDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerShipController.Main) {
-            float fuel = PlayerShipController.PlayerFuelManager.CurrentFuel;
-            float fuelCapacity = PlayerShipController.PlayerFuelManager.Capacity;
+        if (PlayerDataSingleton.FuelManager) {
+            FuelManager fuelManager = PlayerDataSingleton.FuelManager;
+            float fuel = fuelManager.CurrentFuel;
+            float fuelCapacity = fuelManager.Capacity;
             float normalized = fuel/fuelCapacity;
 
             slider.value = normalized;
