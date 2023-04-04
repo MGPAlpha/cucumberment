@@ -26,6 +26,10 @@ public class PlayerShipController : MonoBehaviour
     private float dockingTimer = 0;
     public float DockingProgress { get => dockingTimer / dockingTime; }
 
+    [SerializeField] private float rescueTime = 6;
+    private float rescueTimer = 0;
+    public float RescueProgress { get => rescueTimer / rescueTime; }
+
     /// <summary>
     /// This function is called when the object becomes enabled and active.
     /// </summary>
@@ -89,6 +93,20 @@ public class PlayerShipController : MonoBehaviour
         } else {
             dockingTimer = 0;
         }
+
+        if (Input.GetKey(KeyCode.R)) {
+            rescueTimer += Time.deltaTime;
+            if (rescueTimer >= rescueTime) {
+                Rescue();
+            }
+        } else {
+            rescueTimer = 0;
+        }
+    }
+
+    public void Rescue() {
+        GetComponent<ShipCargo>().Empty();
+        DockingField.Rescue();
     }
 
     public void RegisterDockingField(DockingField field) {

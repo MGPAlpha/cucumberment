@@ -18,11 +18,18 @@ public class InteractionDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        progressBar.fillAmount = PlayerShipController.Main.DockingProgress;
-        if (PlayerShipController.Main.ActiveDockingField) {
+        if (PlayerShipController.Main.ActiveDockingField && PlayerShipController.Main.RescueProgress == 0) {
+            // Show docking Interaction
+            progressBar.fillAmount = PlayerShipController.Main.DockingProgress;
             promptText.text = "Hold E to Dock at\n" + PlayerShipController.Main.ActiveDockingField.Name;
+        } else if (PlayerShipController.Main.RescueProgress > 0 || PlayerShipController.PlayerFuelManager.CurrentFuel <= 0) {
+            // Show Rescue Interaction
+            progressBar.fillAmount = PlayerShipController.Main.RescueProgress;
+            promptText.text = "Hold R for rescue teleport\nAll cargo will be lost";
         } else {
+            progressBar.fillAmount = 0;
             promptText.text = "";
         }
+        
     }
 }

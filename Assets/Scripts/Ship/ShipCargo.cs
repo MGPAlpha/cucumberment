@@ -75,6 +75,10 @@ public class ShipCargo : MonoBehaviour, IWeightContributor
         return weight;
     }
 
+    public void Empty() {
+        inventory.Clear();
+    }
+
 
     public void AddMoney(int amount) {
         Money += amount;

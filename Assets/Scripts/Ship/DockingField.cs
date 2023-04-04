@@ -86,4 +86,10 @@ public class DockingField : MonoBehaviour
         SceneManager.LoadScene(SceneName);
         SaveSystem.SaveGame();
     }
+
+    public static void Rescue() {
+        inStation = true;
+        SceneManager.LoadScene(dockedStationScene);
+        SaveSystem.SaveGame();
+    }
 }

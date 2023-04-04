@@ -1524,6 +1524,7 @@ MonoBehaviour:
   throttleSpeed: 1
   turnSensitivity: 1
   dockingTime: 4
+  rescueTime: 6
 --- !u!114 &1001223539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,7 +1552,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Capacity>k__BackingField: 1000
   efficiency: 1
-  density: 0.01
+  <Density>k__BackingField: 0.01
   maxBurnRate: 2
   <CurrentFuel>k__BackingField: 175
 --- !u!114 &1001223541
@@ -2213,7 +2214,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 60.1}
-  m_SizeDelta: {x: 172.8378, y: 19.5455}
+  m_SizeDelta: {x: 279.8045, y: 19.5455}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1343891669
 MonoBehaviour:
