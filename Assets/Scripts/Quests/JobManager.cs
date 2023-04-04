@@ -30,6 +30,7 @@ public class JobData {
     public List<ItemQuantity> items;
 
     public QuestData progressQuestOnAccept;
+    public QuestData progressQuestOnComplete;
 
     public int TotalItems { get {
         int count = 0;

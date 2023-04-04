@@ -53,6 +53,7 @@ MonoBehaviour:
       - count: 15
         item: {fileID: 11400000, guid: d3cf5bbd2563c4e78b74885cf0e45cfc, type: 2}
       progressQuestOnAccept: {fileID: 11400000}
+      progressQuestOnComplete: {fileID: 11400000}
   - stageType: 0
     enabledFeatures: []
     stageDialogues:
@@ -69,5 +70,35 @@ MonoBehaviour:
   - stageType: 0
     enabledFeatures:
     - buyFuel
+    stageDialogues:
+    - dialogueNodeName: DoctorMeet
+      character: {fileID: 11400000, guid: 068f57931c68ac6cd94a29266becf037, type: 2}
+      blockNormalDialogue: 0
+      dialoguePrompt: 
+      stationAutomatic: 1
+      inSpace: 0
+      spaceAutomatic: 0
+      spaceLocation: {x: 0, y: 0, z: 0}
+      spaceRadius: 0
+    stageJobs: []
+  - stageType: 0
+    enabledFeatures: []
+    stageDialogues: []
+    stageJobs: []
+  - stageType: 0
+    enabledFeatures: []
+    stageDialogues:
+    - dialogueNodeName: DoctorAfterDelivery
+      character: {fileID: 11400000, guid: 068f57931c68ac6cd94a29266becf037, type: 2}
+      blockNormalDialogue: 0
+      dialoguePrompt: 
+      stationAutomatic: 1
+      inSpace: 0
+      spaceAutomatic: 0
+      spaceLocation: {x: 0, y: 0, z: 0}
+      spaceRadius: 0
+    stageJobs: []
+  - stageType: 0
+    enabledFeatures: []
     stageDialogues: []
     stageJobs: []

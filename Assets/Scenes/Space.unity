@@ -1480,9 +1480,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43a4ec94646d9cbbaaf2b4b98a203fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseMaxSpeed: 250
-  baseAcceleration: 100
-  baseBrake: 400
+  baseMaxSpeed: 500
+  baseAcceleration: 200
+  baseBrake: 800
   baseTurnSpeed: 90
   turnSpeedDampingFactor: 0.4
   baseRollSpeed: 60

@@ -102,7 +102,10 @@ public class StationMenu : MonoBehaviour
                     TriggerDialogue(character, dialogue);
                 }), (RectTransform)menuOptionsPanel.transform);
         }
-        CharacterDisplay.Main.ShowSoloCharacter(character.name);
+        
+        if (character.icon) {
+            CharacterDisplay.Main.ShowSoloCharacter(character.name);
+        }
 
     }
 
@@ -122,7 +125,9 @@ public class StationMenu : MonoBehaviour
 
 
         dialogueRunner.StartDialogue(dialogueName);
-        CharacterDisplay.Main.ShowSoloCharacter(character.name);
+        if (character.icon) {
+            CharacterDisplay.Main.ShowSoloCharacter(character.name);
+        }
         GiveUpMenuControl();
     }
 

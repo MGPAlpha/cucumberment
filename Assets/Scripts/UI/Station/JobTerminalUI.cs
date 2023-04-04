@@ -172,6 +172,9 @@ public class JobTerminalUI : MonoBehaviour
         foreach (ItemQuantity item in selectedJob.items) {
             cargo.RemoveItem(item.item, item.count);
         }
+        if (selectedJob.progressQuestOnComplete) {
+            QuestManager.ProgressQuest(selectedJob.progressQuestOnComplete.questName);
+        }
         JobManager.SetActiveJob(null);
         selectedJob = null;
         InitializeDisplay(station);

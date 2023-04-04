@@ -17583,8 +17583,14 @@ PrefabInstance:
     - target: {fileID: 6731705373397154550, guid: fe418f48f5d6cd0bdaa015281f78d7e4,
         type: 3}
       propertyPath: availableCharacters.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6731705373397154550, guid: fe418f48f5d6cd0bdaa015281f78d7e4,
+        type: 3}
+      propertyPath: availableCharacters.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 068f57931c68ac6cd94a29266becf037,
+        type: 2}
     - target: {fileID: 6731705373435562969, guid: fe418f48f5d6cd0bdaa015281f78d7e4,
         type: 3}
       propertyPath: m_AnchorMax.y
