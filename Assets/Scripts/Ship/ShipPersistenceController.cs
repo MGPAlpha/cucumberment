@@ -126,6 +126,12 @@ public class ShipPersistenceController : MonoBehaviour
         }
     }
 
+    public static void BackupAllShips() {
+        foreach (ShipPersistenceController ship in GameObject.FindObjectsOfType<ShipPersistenceController>()) {
+            ship.BackupToShipData();
+        } 
+    }
+
 
     public static void SaveShips() {
         

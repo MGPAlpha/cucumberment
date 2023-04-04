@@ -28,4 +28,14 @@ public class PlayerDataSingleton : MonoBehaviour
     public static void GivePlayerMoney(int amount) {
         Cargo.AddMoney(amount);
     }
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape)) {
+            Application.Quit();
+        }
+    }
 }

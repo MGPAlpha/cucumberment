@@ -3,55 +3,55 @@ tags:
 ---
 
 Ivy: Umbra! Good to see you made it.
-// Ivy: Welcome to the Greenhouse station! We're responsible for the bulk of this planet's food supplies, as well as our primary producer of Standard Cucumbers.
-// Umbra: Why Cucumbers?
-// Ivy: Oh, you don't know about the Cucumberment?
-// Umbra: Um... No?
-// Ivy: Oh wow, you're really out of the loop. Where did you say you were from again?
-// Umbra: The Resodahn system.
-// Ivy: I've never heard of that system. Let me look it up in our database.
-// <<wait 2>>
-// Ivy: It's not coming up.
-// Ivy: I'll run diagnostics on your ship and see if it'll tell us anything.
-// <<wait 2>>
-// Ivy: This...
-// Ivy: This doesn't make sense.
-// Ivy: Your ship's system has coordinates for Resodahn.
-// Ivy: But those coordinates are basically on the opposite side of the galaxy, and the star that used to be there was supposed to have gone supernova around two thousand years ago.
-// Ivy: I don't know how you could've gotten here; interstellar travel is impossible.
-// Ivy: Even stranger, the system clock thinks it's year 8728.
-// Umbra: It is 8728 though, why is that weird?
-// Ivy: Um, no it's not. That was more than four thousand years ago. It's 13246 now.
-// Ivy: You really think it's 8728?
-// Umbra: Yes!
-// Ivy: I'm sorry, but this is out of my depth. I have no idea what's going on here, but I think somehow, impossibly, you traveled in time.
-// Umbra: Okay, I can't deal with thinking about that right now. What was that Cucumbing thing you mentioned? That must be more normal.
-// Ivy: Cucumberment.
-// Ivy: Well I'm not really a history buff, but here's what I know.
-// Ivy: Way back in ancient times the galaxy was one interconnected civilization. People could travel between star systems through a network of interstellar warp gates.
-// Ivy: A few thousand years ago, our system's interstellar gate just stopped working. Apparently, warping between systems just wasn't possible anymore. We became completely isolated from the rest of the galaxy. No more trade, communication, anything.
-// As far as anyone can tell every other civilized system is in the same situation.
-// Ivy: A lot had to change to keep the system going. All the planets in the system are gas giants, so our economy used to be devoted to gas capture and asteroid mining.
-// Ivy: Once we lost contact though, we had to expand to cover everything we need. The limited local food production we had was expanded to build greenhouse stations like this one, but we didn't have many different types of food, mostly algaes because they grow easy in space.
-// Ivy: But then, sometime around two hundred years ago, someone recovered the genome for a vegetable long thought extinct:
-// Ivy: The Cucumber.
-// Ivy: It quickly became the most popular food in the system, and the greenhouses like this one pivoted most of their production to cucumbers.
-// Ivy: After a while, scientific advances allowed us to use cucumbers to for all kinds of purposes. Stations make all sorts of medicine, fuel, and other materials out of cucumbers now. They're easily the most valuable commodity in the system. Certain high quality cucumbers are even sold as jewelery or other decorations.
-// Ivy: Our currency is even backed by cucumbers!
-// Ivy: But however they're used, cucumbers all start out at greenhouse stations like this one.
-// Umbra: So all you eat are cucumbers? That sounds awful.
-// Ivy: We do cook them in different ways. When they're the best food available by far, you learn to appreciate them.
-// Umbra: So...
-// <<wait 1.5>>
-// Umbra: What do I do now?
-// Ivy: Well I don't know how you got here, but I don't think you're gonna be able to get back.
-// Ivy: I guess you may as well get settled in here.
-// Ivy: You'll need to find a job so you can support yourself.
-// Ivy: Since you already have a ship, I think you could become a Carrier.
-// Umbra: What's that?
-// Ivy: Carriers fly goods, mostly cucumbers, between stations. One company, VernaCo, manages all the shipping in the system. Carriers choose jobs at a station, take the goods to their destination, and get paid by VernaCo.
-// Ivy: Most stations have a VernaCo terminal onboard. Why don't you go to the VernaCo terminal on our station and take a job. I think we should have a shipment scheduled that you could take.
-// Umbra: Alright, I'll give it a shot.
+Ivy: Welcome to the Greenhouse station! We're responsible for the bulk of this planet's food supplies, as well as our primary producer of Standard Cucumbers.
+Umbra: Why Cucumbers?
+Ivy: Oh, you don't know about the Cucumberment?
+Umbra: Um... No?
+Ivy: Oh wow, you're really out of the loop. Where did you say you were from again?
+Umbra: The Resodahn system.
+Ivy: I've never heard of that system. Let me look it up in our database.
+<<wait 2>>
+Ivy: It's not coming up.
+Ivy: I'll run diagnostics on your ship and see if it'll tell us anything.
+<<wait 2>>
+Ivy: This...
+Ivy: This doesn't make sense.
+Ivy: Your ship's system has coordinates for Resodahn.
+Ivy: But those coordinates are basically on the opposite side of the galaxy, and the star that used to be there was supposed to have gone supernova around two thousand years ago.
+Ivy: I don't know how you could've gotten here; interstellar travel is impossible.
+Ivy: Even stranger, the system clock thinks it's year 8728.
+Umbra: It is 8728 though, why is that weird?
+Ivy: Um, no it's not. That was more than four thousand years ago. It's 13246 now.
+Ivy: You really think it's 8728?
+Umbra: Yes!
+Ivy: I'm sorry, but this is out of my depth. I have no idea what's going on here, but I think somehow, impossibly, you traveled in time.
+Umbra: Okay, I can't deal with thinking about that right now. What was that Cucumbing thing you mentioned? That must be more normal.
+Ivy: Cucumberment.
+Ivy: Well I'm not really a history buff, but here's what I know.
+Ivy: Way back in ancient times the galaxy was one interconnected civilization. People could travel between star systems through a network of interstellar warp gates.
+Ivy: A few thousand years ago, our system's interstellar gate just stopped working. Apparently, warping between systems just wasn't possible anymore. We became completely isolated from the rest of the galaxy. No more trade, communication, anything.
+As far as anyone can tell every other civilized system is in the same situation.
+Ivy: A lot had to change to keep the system going. All the planets in the system are gas giants, so our economy used to be devoted to gas capture and asteroid mining.
+Ivy: Once we lost contact though, we had to expand to cover everything we need. The limited local food production we had was expanded to build greenhouse stations like this one, but we didn't have many different types of food, mostly algaes because they grow easy in space.
+Ivy: But then, sometime around two hundred years ago, someone recovered the genome for a vegetable long thought extinct:
+Ivy: The Cucumber.
+Ivy: It quickly became the most popular food in the system, and the greenhouses like this one pivoted most of their production to cucumbers.
+Ivy: After a while, scientific advances allowed us to use cucumbers to for all kinds of purposes. Stations make all sorts of medicine, fuel, and other materials out of cucumbers now. They're easily the most valuable commodity in the system. Certain high quality cucumbers are even sold as jewelery or other decorations.
+Ivy: Our currency is even backed by cucumbers!
+Ivy: But however they're used, cucumbers all start out at greenhouse stations like this one.
+Umbra: So all you eat are cucumbers? That sounds awful.
+Ivy: We do cook them in different ways. When they're the best food available by far, you learn to appreciate them.
+Umbra: So...
+<<wait 1.5>>
+Umbra: What do I do now?
+Ivy: Well I don't know how you got here, but I don't think you're gonna be able to get back.
+Ivy: I guess you may as well get settled in here.
+Ivy: You'll need to find a job so you can support yourself.
+Ivy: Since you already have a ship, I think you could become a Carrier.
+Umbra: What's that?
+Ivy: Carriers fly goods, mostly cucumbers, between stations. One company, VernaCo, manages all the shipping in the system. Carriers choose jobs at a station, take the goods to their destination, and get paid by VernaCo.
+Ivy: Most stations have a VernaCo terminal onboard. Why don't you go to the VernaCo terminal on our station and take a job. I think we should have a shipment scheduled that you could take.
+Umbra: Alright, I'll give it a shot.
 
 <<progressQuest "Game Start">>
 
