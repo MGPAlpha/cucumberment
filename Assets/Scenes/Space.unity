@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.005088349, g: 0.03815127, b: 0.04032519, a: 1}
+  m_IndirectSpecularColor: {r: 0.005077512, g: 0.038081795, b: 0.040066, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -416,6 +416,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.08420181}
   m_SizeDelta: {x: 0, y: -10.1684}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &245306234 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3853029428867716323, guid: 532a0403238178c8caf57ca9a6f99a25,
+    type: 3}
+  m_PrefabInstance: {fileID: 3853029427112975568}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &298516278 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4116292089685569476, guid: b1a8f25ed4075f113b02a82aab7d0f4c,
@@ -3613,12 +3619,45 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3853029427112975568}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 245306234}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13fa40493b79f911c84a6c3f486d9981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2029733943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245306234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f11a531473e24a4dbf90be71b6fd866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onNameUpdate:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2029733941}
+        m_TargetAssemblyTypeName: CharacterDisplay, Assembly-CSharp
+        m_MethodName: TryCharacterHighlight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onDialogueStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onNameNotPresent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2064371129
 GameObject:
   m_ObjectHideFlags: 0
@@ -4153,6 +4192,7 @@ MonoBehaviour:
   dialogueViews:
   - {fileID: 1986819495}
   - {fileID: 1092026214}
+  - {fileID: 2029733943}
   startNode: Start
   startAutomatically: 0
   runSelectedOptionAsLine: 0
@@ -4350,6 +4390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3853029428867716325, guid: 532a0403238178c8caf57ca9a6f99a25,
+        type: 3}
+      propertyPath: selectedDisplacement
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3853029428996202109, guid: 532a0403238178c8caf57ca9a6f99a25,
         type: 3}
