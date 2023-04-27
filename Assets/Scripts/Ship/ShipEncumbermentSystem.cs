@@ -30,4 +30,5 @@ public class ShipEncumbermentSystem : MonoBehaviour
     }
 
     public float SpeedRatio { get => baseWeight / CurrentWeight; }
+    public float FuelRatio { get => CurrentWeight / baseWeight; }
 }

@@ -87,18 +87,20 @@ public class ShipCore : MonoBehaviour
               
         } else {
 
-            if (fuelManager) {
-                fuelManager.BurnFuel(throttle + (useBoost ? boostFuelFactor : 0), Time.fixedDeltaTime);
-            }
+
 
             float encumbermentFactor = 1;
             if (encumbermentSystem) {
                 
-                encumbermentFactor = encumbermentSystem.SpeedRatio;
+                encumbermentFactor = encumbermentSystem.FuelRatio;
                 // Debug.Log(encumbermentFactor);
             }
+
+            if (fuelManager) {
+                fuelManager.BurnFuel((throttle + (useBoost ? boostFuelFactor : 0)) * encumbermentFactor, Time.fixedDeltaTime);
+            }
             
-            float speedTarget = baseMaxSpeed * (throttle + (useBoost ? boostSpeedFactor : 0)) * encumbermentFactor;
+            float speedTarget = baseMaxSpeed * (throttle + (useBoost ? boostSpeedFactor : 0));
 
             if (fuelManager && !fuelManager.CanFly) {
                 speedTarget = 0;
