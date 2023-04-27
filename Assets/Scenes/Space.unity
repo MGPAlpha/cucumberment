@@ -2066,6 +2066,7 @@ MonoBehaviour:
   <FieldCenter>k__BackingField: {fileID: 1001223535}
   <FieldSize>k__BackingField: 3000
   <AsteroidCount>k__BackingField: 10000
+  <MaxPhysicsDistance>k__BackingField: 500
   asteroidPrefabs:
   - {fileID: -4943733506761307451, guid: ea69caf230089fd45b16b373fef6d83f, type: 3}
   - {fileID: 1299537318179532547, guid: f63608ae9c0289f43a6dc73a03c5570a, type: 3}
@@ -3673,7 +3674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2064371131
 Transform:
   m_ObjectHideFlags: 0

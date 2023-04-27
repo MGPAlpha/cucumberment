@@ -7,6 +7,7 @@ public class AsteroidVolume : MonoBehaviour
     [field: SerializeField] public Transform FieldCenter {get; private set;}
     [field: SerializeField] public float FieldSize {get; private set;} = 1000;
     [field: SerializeField] public int AsteroidCount {get; private set;} = 1000;
+    [field: SerializeField] public int MaxPhysicsDistance {get; private set;} = 300;
     [SerializeField] private List<GeneratedAsteroid> asteroidPrefabs;
 
     private HashSet<GeneratedAsteroid> outOfBoundsAsteroids = new HashSet<GeneratedAsteroid>();

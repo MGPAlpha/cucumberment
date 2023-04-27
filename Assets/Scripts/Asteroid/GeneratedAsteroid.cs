@@ -14,11 +14,13 @@ public class GeneratedAsteroid : MonoBehaviour
     private AsteroidVolume parentVolume;
     private Transform parentVolumeCenter;
     private float parentVolumeSize;
+    private float parentVolumePhysicsMax;
 
     [SerializeField] private float minScale = 1;
     [SerializeField] private float maxScale = 1;
 
     private bool inBounds = true;
+    private bool spawnBlocked = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,6 +29,8 @@ public class GeneratedAsteroid : MonoBehaviour
         _col = GetComponent<Collider>();
         _re = GetComponent<Renderer>();
     }
+
+    private bool physicsActive = true;
 
     // Update is called once per frame
     void Update()
@@ -41,6 +45,21 @@ public class GeneratedAsteroid : MonoBehaviour
                 if (inBounds) parentVolume.MarkInBounds(this);
                 else parentVolume.MarkOutOfBounds(this);
             }
+            CheckPhysicsDistance(distToCenter);
+        }
+    }
+
+    private void CheckPhysicsDistance(Vector3 distToCenter) {
+        if (!spawnBlocked) {
+            if (!_rb.IsSleeping() && distToCenter.magnitude > parentVolumePhysicsMax) {
+                physicsActive = false;
+                // _rb.isKinematic = true;
+                _rb.Sleep();
+            } else if (_rb.IsSleeping() && distToCenter.magnitude < parentVolumePhysicsMax) {
+                physicsActive = true;
+                // _rb.isKinematic = false;
+                _rb.WakeUp();
+            }
         }
     }
 
@@ -48,12 +67,16 @@ public class GeneratedAsteroid : MonoBehaviour
         parentVolume = parent;
         parentVolumeCenter = parentVolume.FieldCenter;
         parentVolumeSize = parentVolume.FieldSize;
+        parentVolumePhysicsMax = parentVolume.MaxPhysicsDistance;
         transform.localScale = Vector3.one * Random.Range(minScale, maxScale);
         _rb.SetDensity(10);
         _rb.mass = _rb.mass;
         inBounds = true;
-        bool shouldBlock = AsteroidBlocker.TestAsteroidBlock(transform.position);
-        _col.enabled = !shouldBlock;
-        _re.enabled = !shouldBlock;
+        spawnBlocked = AsteroidBlocker.TestAsteroidBlock(transform.position);
+        _col.enabled = !spawnBlocked;
+        _re.enabled = !spawnBlocked;
+        _rb.isKinematic = spawnBlocked;
+        Vector3 distToCenter = transform.position - parentVolumeCenter.position;
+        CheckPhysicsDistance(distToCenter);
     }
 }
