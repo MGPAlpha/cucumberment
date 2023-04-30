@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.005077512, g: 0.038081795, b: 0.040066, a: 1}
+  m_IndirectSpecularColor: {r: 0.005088349, g: 0.03815127, b: 0.04032519, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2066,7 +2066,7 @@ MonoBehaviour:
   <FieldCenter>k__BackingField: {fileID: 1001223535}
   <FieldSize>k__BackingField: 3000
   <AsteroidCount>k__BackingField: 10000
-  <MaxPhysicsDistance>k__BackingField: 500
+  <MaxPhysicsDistance>k__BackingField: 300
   asteroidPrefabs:
   - {fileID: -4943733506761307451, guid: ea69caf230089fd45b16b373fef6d83f, type: 3}
   - {fileID: 1299537318179532547, guid: f63608ae9c0289f43a6dc73a03c5570a, type: 3}
