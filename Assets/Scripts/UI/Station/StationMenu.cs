@@ -17,7 +17,7 @@ public enum MenuMode {
 public class StationMenu : MonoBehaviour
 {
 
-    [SerializeField] private string currentStation;
+    [SerializeField] private StationData currentStation;
     [SerializeField] private GameObject menuItemPrefab;
     [SerializeField] private GameObject menuOptionsPanel;
     [SerializeField] private DialogueRunner dialogueRunner;
@@ -143,7 +143,7 @@ public class StationMenu : MonoBehaviour
     }
 
     public void LeaveStation() {
-        DockingField.SetCurrentStation(currentStation, "", false);
+        DockingField.SetCurrentStation(currentStation.displayName, "", false);
         SaveSystem.SaveGame();
         SceneManager.LoadScene("Space");
     }

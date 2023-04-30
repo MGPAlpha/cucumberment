@@ -35,7 +35,7 @@ public class JobTerminalUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI penaltyPerItemText;
     [SerializeField] private TextMeshProUGUI totalPayText;
 
-    private string station;
+    private StationData station;
 
     private JobData selectedJob;
 
@@ -54,7 +54,7 @@ public class JobTerminalUI : MonoBehaviour
 
 
 
-    public void InitializeDisplay(string station) {
+    public void InitializeDisplay(StationData station) {
         this.station = station;
         ClearInfo();
         ClearDelivery();
@@ -76,7 +76,7 @@ public class JobTerminalUI : MonoBehaviour
             AddJobToList(JobManager.ActiveJob);
         }
         AddCategoryToList("Available Jobs");
-        foreach (JobData job in QuestManager.GetStationQuestJobs(station)) {
+        foreach (JobData job in QuestManager.GetStationQuestJobs(station.displayName)) {
             if (job != JobManager.ActiveJob) {
                 AddJobToList(job);
             }
@@ -114,7 +114,7 @@ public class JobTerminalUI : MonoBehaviour
 
         acceptButton.SetActive(job != JobManager.ActiveJob);
         cancelButton.SetActive(job == JobManager.ActiveJob);
-        deliverButton.SetActive(job == JobManager.ActiveJob && job.toStation == station);
+        deliverButton.SetActive(job == JobManager.ActiveJob && job.toStation == station.displayName);
 
         selectedJob = job;
         deliveryScreen.SetActive(false);

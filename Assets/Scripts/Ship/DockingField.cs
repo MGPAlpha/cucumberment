@@ -13,8 +13,7 @@ public class DockingField : MonoBehaviour
 
     private static bool dockingLoaded = false;
 
-    [field: SerializeField] public string Name {get; private set;}
-    [field: SerializeField] public string SceneName {get; private set;}
+    [field: SerializeField] public StationData Station {get; private set;}
 
     [SerializeField] private Transform spawnPoint;
 
@@ -39,12 +38,12 @@ public class DockingField : MonoBehaviour
     void Start()
     {
         _col = GetComponent<Collider>();
-        if (spawnPoint && dockedStationName == Name) {
+        if (spawnPoint && dockedStationName == Station.displayName) {
             PlayerShipController.Main.transform.position = spawnPoint.transform.position;
             PlayerShipController.Main.transform.rotation = spawnPoint.transform.rotation;
-        }
-        foreach(AsteroidVolume asteroidVolume in GameObject.FindObjectsOfType<AsteroidVolume>()) {
-            asteroidVolume.RespawnAllAsteroids();
+            foreach(AsteroidVolume asteroidVolume in GameObject.FindObjectsOfType<AsteroidVolume>()) {
+                asteroidVolume.RespawnAllAsteroids();
+            }
         }
     }
 
@@ -79,11 +78,11 @@ public class DockingField : MonoBehaviour
     }
 
     public void Dock() {
-        dockedStationName = Name;
-        dockedStationScene = SceneName;
+        dockedStationName = Station.displayName;
+        dockedStationScene = Station.sceneName;
         inStation = true;
 
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(Station.sceneName);
         SaveSystem.SaveGame();
     }
 

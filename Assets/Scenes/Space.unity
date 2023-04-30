@@ -1768,8 +1768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11bfedcd8c23c603bb608cacf2b1876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Greenhouse
-  <SceneName>k__BackingField: Greenhouse
+  <Station>k__BackingField: {fileID: 11400000, guid: 7c3ec5deecc3cd85e8dee67a4c8c5008,
+    type: 2}
   spawnPoint: {fileID: 1664342164}
 --- !u!135 &1136881393
 SphereCollider:
@@ -3030,8 +3030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11bfedcd8c23c603bb608cacf2b1876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Hospital
-  <SceneName>k__BackingField: Hospital
+  <Station>k__BackingField: {fileID: 11400000, guid: 9fc065bb0e24fc869925da7b48c00056,
+    type: 2}
   spawnPoint: {fileID: 1146856206}
 --- !u!135 &1681669131
 SphereCollider:

@@ -21,7 +21,7 @@ public class InteractionDisplay : MonoBehaviour
         if (PlayerShipController.Main.ActiveDockingField && PlayerShipController.Main.RescueProgress == 0) {
             // Show docking Interaction
             progressBar.fillAmount = PlayerShipController.Main.DockingProgress;
-            promptText.text = "Hold E to Dock at\n" + PlayerShipController.Main.ActiveDockingField.Name;
+            promptText.text = "Hold E to Dock at\n" + PlayerShipController.Main.ActiveDockingField.Station.displayName;
         } else if (PlayerShipController.Main.RescueProgress > 0 || PlayerShipController.PlayerFuelManager.CurrentFuel <= 0) {
             // Show Rescue Interaction
             progressBar.fillAmount = PlayerShipController.Main.RescueProgress;
