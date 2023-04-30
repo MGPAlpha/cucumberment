@@ -14,4 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hospital.unity
     guid: 68a6d7e8f64f8a5a89e312008115a386
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: f12253cc826280b58864ff9c8422aa4a,
+      type: 2}

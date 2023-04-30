@@ -27,7 +27,7 @@ public class QuestManager : MonoBehaviour
         return (from dialogue in availableQuestDialogues where dialogue.character == character && !dialogue.inSpace && !dialogue.stationAutomatic select dialogue);
     }
 
-    public static IEnumerable<JobData> GetStationQuestJobs(string station) {
+    public static IEnumerable<JobData> GetStationQuestJobs(StationData station) {
         return (from job in availableJobsFromQuests where job.fromStation == station select job);
     }
 
@@ -109,9 +109,6 @@ public class QuestManager : MonoBehaviour
             }
 
         }
-        print("Active quest count " + activeQuests.Count);
-        print("Available quest jobs " + availableJobsFromQuests.Count);
-        print("Active jobs from greenhouse " + GetStationQuestJobs("Greenhouse").Count());
 
     }
 

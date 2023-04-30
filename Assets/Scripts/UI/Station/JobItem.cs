@@ -28,8 +28,8 @@ public class JobItem : MonoBehaviour
 
     public void Init(JobData job) {
         this.job = job;
-        fromText.text = job.fromStation;
-        toText.text = job.toStation;
+        fromText.text = job.fromStation.displayName;
+        toText.text = job.toStation.displayName;
         quantityText.text = job.TotalItems.ToString();
         weightText.text = job.TotalWeight.ToString("F1");
         payText.text = job.pay.ToString();

@@ -76,7 +76,7 @@ public class JobTerminalUI : MonoBehaviour
             AddJobToList(JobManager.ActiveJob);
         }
         AddCategoryToList("Available Jobs");
-        foreach (JobData job in QuestManager.GetStationQuestJobs(station.displayName)) {
+        foreach (JobData job in QuestManager.GetStationQuestJobs(station)) {
             if (job != JobManager.ActiveJob) {
                 AddJobToList(job);
             }
@@ -101,8 +101,8 @@ public class JobTerminalUI : MonoBehaviour
     }
 
     private void LoadJob(JobData job) {
-        fromText.text = job.fromStation;
-        toText.text = job.toStation;
+        fromText.text = job.fromStation.displayName;
+        toText.text = job.toStation.displayName;
         payText.text = job.pay.ToString();
         cargoWeightText.text = job.TotalWeight.ToString();
         errorText.gameObject.SetActive(false);
@@ -114,7 +114,7 @@ public class JobTerminalUI : MonoBehaviour
 
         acceptButton.SetActive(job != JobManager.ActiveJob);
         cancelButton.SetActive(job == JobManager.ActiveJob);
-        deliverButton.SetActive(job == JobManager.ActiveJob && job.toStation == station.displayName);
+        deliverButton.SetActive(job == JobManager.ActiveJob && job.toStation == station);
 
         selectedJob = job;
         deliveryScreen.SetActive(false);
@@ -124,7 +124,7 @@ public class JobTerminalUI : MonoBehaviour
     private int deliveryActualPay;
 
     private void OpenDeliveryScreen(JobData job) {
-        deliveryToText.text = job.toStation;
+        deliveryToText.text = job.toStation.displayName;
         deliveryBasePayText.text = job.pay.ToString();
 
         int jobPay = job.pay;

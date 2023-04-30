@@ -7,13 +7,14 @@ using UnityEngine;
 [Serializable]
 public class JobData {
     public JobData(JobDataSerializable job) {
-        if (job != null) {
+        if (job == null) {
             items = new List<ItemQuantity>();
             return;
         };
         uniqueName = job.uniqueName;
-        fromStation = job.fromStation;
-        toStation = job.toStation;
+        fromStation = StationLibrary.Stations.FindStationByName(job.fromStation);
+        Debug.Log(fromStation.sceneName);
+        toStation = StationLibrary.Stations.FindStationByName(job.toStation);
         limitedTime = job.limitedTime;
         timeLimit = job.timeLimit;
         pay = job.pay;
@@ -22,8 +23,8 @@ public class JobData {
     }
 
     public string uniqueName;
-    public string fromStation;
-    public string toStation;
+    public StationData fromStation;
+    public StationData toStation;
     public bool limitedTime;
     public int timeLimit;
     public int pay;
@@ -56,8 +57,8 @@ public class JobDataSerializable {
     public JobDataSerializable(JobData job) {
         if (job == null) return;
         uniqueName = job.uniqueName;
-        fromStation = job.fromStation;
-        toStation = job.toStation;
+        fromStation = job.fromStation.displayName;
+        toStation = job.toStation.displayName;
         limitedTime = job.limitedTime;
         timeLimit = job.timeLimit;
         pay = job.pay;
@@ -110,6 +111,7 @@ public class JobManager : MonoBehaviour
             LoadJobs();
             jobsLoaded = true;
         }
+        Debug.Log(StationLibrary.Stations.stations.Count);
     }
 
     public static void SetActiveJob(JobData job) {
@@ -134,6 +136,8 @@ public class JobManager : MonoBehaviour
             } else {
                 ActiveJob = new JobData(stringJob);
             }
+
+            jobsLoaded = true;
         } else {
             ActiveJob = null;
         }
