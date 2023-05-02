@@ -25,5 +25,8 @@ public class WorldMovable : MonoBehaviour
         if (TryGetComponent<AsteroidVolume>(out AsteroidVolume vol)) {
             vol.AdjustPrevCenter(offset);
         }
+        if (TryGetComponent<PirateController>(out PirateController pir)) {
+            pir.AdjustTrackedPositions(offset);
+        }
     }
 }

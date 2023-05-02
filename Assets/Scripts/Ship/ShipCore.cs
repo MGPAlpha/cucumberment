@@ -81,7 +81,9 @@ public class ShipCore : MonoBehaviour
                 collisionMode = false;
                 _rb.velocity = Vector3.zero;
                 _rb.isKinematic = true;
-                CrashCamera.Main.DeactivateCrash();
+                if (useCrashCam) {
+                    CrashCamera.Main.DeactivateCrash();
+                }   
             }
             collisionTime += Time.fixedDeltaTime;
               
@@ -131,6 +133,8 @@ public class ShipCore : MonoBehaviour
         shipModel.localRotation = Quaternion.Euler(0, 0, currentTurnTilt);
     }
 
+    [SerializeField] private bool useCrashCam = false;
+
     /// <summary>
     /// OnCollisionEnter is called when this collider/rigidbody has begun
     /// touching another rigidbody/collider.
@@ -146,6 +150,8 @@ public class ShipCore : MonoBehaviour
         currentSpeed = 0;
         turnInput = Vector2.zero;
         collisionTime = 0;
-        CrashCamera.Main.ActivateCrash(transform);
+        if (useCrashCam) {
+            CrashCamera.Main.ActivateCrash(transform);
+        }
     }
 }

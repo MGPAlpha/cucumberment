@@ -106,6 +106,11 @@ public class WaypointMarker : MonoBehaviour
                     pointer.enabled = false;
                 }
                 break;
+            case WaypointType.Enemy:
+                rectTransform.localScale = new Vector2(.5f, .5f);
+                pointer.color = Color.red;
+                pointer.enabled = true;
+                break;
             default:
 
                 rectTransform.localScale = new Vector2(1, .5f);
