@@ -20,6 +20,8 @@ public class PositionBroadcaster : MonoBehaviour
         }
     }
 
+    [field: SerializeField] public StationData Station {get; private set;}
+
     /// <summary>
     /// This function is called when the object becomes enabled and active.
     /// </summary>

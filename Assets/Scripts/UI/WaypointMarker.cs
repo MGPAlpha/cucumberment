@@ -92,6 +92,26 @@ public class WaypointMarker : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, newRotation);
 
+        switch (target.WaypointType) {
+            case WaypointType.Station:
+                if (QuestManager.IsStationGoal(target.Station)) {
+                    rectTransform.localScale = new Vector2(1.2f, 1.2f);
+                    pointer.color = Color.white;
+                    pointer.enabled = true;
+                } else if (QuestManager.IsStationRevealed(target.Station)) {
+                    rectTransform.localScale = new Vector2(.5f, 1);
+                    pointer.color = Color.cyan;
+                    pointer.enabled = true;
+                } else {
+                    pointer.enabled = false;
+                }
+                break;
+            default:
+
+                rectTransform.localScale = new Vector2(1, .5f);
+                break;
+        }
+
         // } else if (borderedScreenPos.x < clampedScreenPos.x) {
         //     transform.rotation = Quaternion.Euler(0, 0, 90);
         // } else if (borderedScreenPos.x > clampedScreenPos.x) {

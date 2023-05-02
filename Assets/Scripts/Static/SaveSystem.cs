@@ -5,7 +5,7 @@ using UnityEngine;
 public static class SaveSystem
 {
     public static void SaveGame() {
-        ShipPersistenceController.BackupAllShips();
+        ShipPersistenceController.SaveShips();
         DockingField.SaveLocation();
         QuestManager.SaveQuests();
         JobManager.SaveJobs();

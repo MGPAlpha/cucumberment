@@ -29,6 +29,8 @@ public class QuestStage {
 
     public List<QuestDialogue> stageDialogues;
     public List<JobData> stageJobs;
+    public List<StationData> revealedStations;
+    public StationData goalStation;
 }
 
 [CreateAssetMenu(menuName = "Quests/Quest", fileName = "New Quest")]

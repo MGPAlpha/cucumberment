@@ -18,6 +18,8 @@ public class QuestManager : MonoBehaviour
 
     private static HashSet<string> enabledFeatures = new HashSet<string>();
     private static HashSet<JobData> availableJobsFromQuests = new HashSet<JobData>();
+    private static HashSet<StationData> revealedStations = new HashSet<StationData>();
+    private static HashSet<StationData> goalStations = new HashSet<StationData>();
 
     public static IEnumerable<QuestDialogue> GetAutoStationDialogues(IEnumerable<CharacterData> characters) {
         return (from dialogue in availableQuestDialogues where characters.Contains(dialogue.character) && dialogue.stationAutomatic select dialogue);
@@ -38,6 +40,14 @@ public class QuestManager : MonoBehaviour
 
     public static bool IsFeatureEnabled(string featureName) {
         return enabledFeatures.Contains(featureName);
+    }
+
+    public static bool IsStationGoal(StationData station) {
+        return goalStations.Contains(station);
+    }
+
+    public static bool IsStationRevealed(StationData station) {
+        return revealedStations.Contains(station);
     }
 
     [SerializeField] private bool inSpace;
@@ -81,6 +91,8 @@ public class QuestManager : MonoBehaviour
         availableQuestDialogues = new HashSet<QuestDialogue>();
         enabledFeatures = new HashSet<string>();
         availableJobsFromQuests = new HashSet<JobData>();
+        revealedStations = new HashSet<StationData>();
+        goalStations = new HashSet<StationData>();
         foreach (QuestData quest in questLibrary.quests) { // Check all quests
 
             bool questComplete = completedQuests.Contains(quest);
@@ -104,11 +116,16 @@ public class QuestManager : MonoBehaviour
                         QuestStage currentStage = quest.stages[i];
                         enabledFeatures.UnionWith(currentStage.enabledFeatures);
                         availableJobsFromQuests.UnionWith(currentStage.stageJobs);
+                        revealedStations.UnionWith(currentStage.revealedStations);
+                        if (!questComplete && i == activeQuests[quest]) {
+                            goalStations.Add(currentStage.goalStation);
+                        }
                     }
                 }
             }
 
         }
+        Debug.Log("Amount of revealed stations " + revealedStations.Count);
 
     }
 
