@@ -41,6 +41,10 @@ public class DockingField : MonoBehaviour
         if (spawnPoint && dockedStationName == Station.displayName) {
             PlayerShipController.Main.transform.position = spawnPoint.transform.position;
             PlayerShipController.Main.transform.rotation = spawnPoint.transform.rotation;
+            WorldMover mover = GameObject.FindObjectOfType<WorldMover>();
+            if (mover) {
+                mover.Recenter();
+            }
             foreach(AsteroidVolume asteroidVolume in GameObject.FindObjectsOfType<AsteroidVolume>()) {
                 asteroidVolume.RespawnAllAsteroids();
             }

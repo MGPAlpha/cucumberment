@@ -44,6 +44,11 @@ public class AsteroidVolume : MonoBehaviour
             ast.Regenerate(this);
 
         }
+        lastGenerationCenter = FieldCenter.position;
+    }
+
+    public void AdjustPrevCenter(Vector3 offset) {
+        lastGenerationCenter += offset;
     }
 
     private void RespawnOutOfBoundsAsteroids() {

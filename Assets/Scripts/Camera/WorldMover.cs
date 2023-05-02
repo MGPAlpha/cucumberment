@@ -39,4 +39,9 @@ public class WorldMover : MonoBehaviour
             MoveWorld.Invoke(translation);
         }
     }
+
+    public void Recenter() {
+        MoveWorld(-transform.position);
+        transform.position = Vector3.zero;
+    }
 }

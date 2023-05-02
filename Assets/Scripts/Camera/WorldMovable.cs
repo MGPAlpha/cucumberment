@@ -22,5 +22,8 @@ public class WorldMovable : MonoBehaviour
 
     void Move(Vector3 offset) {
         transform.position += offset;
+        if (TryGetComponent<AsteroidVolume>(out AsteroidVolume vol)) {
+            vol.AdjustPrevCenter(offset);
+        }
     }
 }
