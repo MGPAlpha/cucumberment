@@ -20142,7 +20142,7 @@ PrefabInstance:
         type: 3}
       propertyPath: availableCharacters.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 068f57931c68ac6cd94a29266becf037,
+      objectReference: {fileID: 11400000, guid: a5239502f375ab26a9cf8eff223a4e25,
         type: 2}
     - target: {fileID: 6731705373435562969, guid: fe418f48f5d6cd0bdaa015281f78d7e4,
         type: 3}

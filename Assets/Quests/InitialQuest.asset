@@ -115,6 +115,48 @@ MonoBehaviour:
   - stageType: 0
     enabledFeatures: []
     stageDialogues: []
+    stageJobs:
+    - uniqueName: Med for Shipyard
+      fromStation: {fileID: 11400000, guid: 9fc065bb0e24fc869925da7b48c00056, type: 2}
+      toStation: {fileID: 11400000, guid: eb48acbfffde4e5489898f861d68c9d9, type: 2}
+      limitedTime: 0
+      timeLimit: 0
+      pay: 150
+      items:
+      - count: 10
+        item: {fileID: 11400000, guid: 7514c254715f78dc882d87581139ed79, type: 2}
+      progressQuestOnAccept: {fileID: 11400000}
+      progressQuestOnComplete: {fileID: 0}
+    revealedStations: []
+    goalStation: {fileID: 11400000, guid: 9fc065bb0e24fc869925da7b48c00056, type: 2}
+  - stageType: 0
+    enabledFeatures: []
+    stageDialogues:
+    - dialogueNodeName: DoctorPiratesWarning
+      character: {fileID: 11400000, guid: 068f57931c68ac6cd94a29266becf037, type: 2}
+      blockNormalDialogue: 0
+      dialoguePrompt: 
+      stationAutomatic: 1
+      inSpace: 0
+      spaceAutomatic: 0
+      spaceLocation: {x: 0, y: 0, z: 0}
+      spaceRadius: 0
+    stageJobs: []
+    revealedStations:
+    - {fileID: 11400000, guid: eb48acbfffde4e5489898f861d68c9d9, type: 2}
+    goalStation: {fileID: 11400000, guid: eb48acbfffde4e5489898f861d68c9d9, type: 2}
+  - stageType: 0
+    enabledFeatures: []
+    stageDialogues:
+    - dialogueNodeName: EngineerMeet
+      character: {fileID: 11400000, guid: a5239502f375ab26a9cf8eff223a4e25, type: 2}
+      blockNormalDialogue: 1
+      dialoguePrompt: Ask About Ship
+      stationAutomatic: 0
+      inSpace: 0
+      spaceAutomatic: 0
+      spaceLocation: {x: 0, y: 0, z: 0}
+      spaceRadius: 0
     stageJobs: []
     revealedStations: []
-    goalStation: {fileID: 0}
+    goalStation: {fileID: 11400000, guid: eb48acbfffde4e5489898f861d68c9d9, type: 2}

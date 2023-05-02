@@ -1,0 +1,53 @@
+﻿title: EngineerMeet
+tags:
+---
+
+Umbra: Hey, are you the engineer here?
+Engineer: That's me! How can I help you?
+Umbra: Well, I was wondering if you could check out my ship for anything... weird?
+Engineer: What makes you think there's something weird to find?
+Umbra: Its.. hard to explain.
+
+<i>5 minutes later</i>
+
+Engineer: So you're really from 4000 years ago?
+Umbra: It seems like it.
+Engineer: Well I don't know exactly what I'm looking for, but I suppose I could check the ship out and see what I find.
+Umbra: That'd be great.
+
+<i>20 minutes later</i>
+
+Engineer: Alright, I'm finished!
+Umbra: Did you find anything?
+Engineer: Well there doesn't seem to be anything wrong with the ship. Actually it's in pristine condition for how old some of this tech is.
+Umbra: That could just be the time skip.
+Engineer: Yeah that would make sense.
+Engineer: But I actually found something <i>else</i> back there.
+Umbra: What do you mean "some<i>thing</i>"?
+Engineer: While I was checking the cargo hold, I found this little guy stowed away in there.
+<<showTwoCharacters "CharacterDisplay" "Umbra" "Canne">>
+Canne: *gee-cwa* *gee-cwa*
+Umbra: Awwwww! He's adorable! What.. is he?
+Engineer: I don't know, I've never seen a creature like this before.
+Canne: *gee-cwa*
+Engineer: He seems to like you though.
+Umbra: It looks like he's got a little cucumber friend. He must have stowed away in that shipment of cucumbers from the greenhouse!
+Umbra: I'm gonna call him... Canne!
+Umbra: Canne, do you want to stay on the ship with me?
+Canne: *gee-cwa*
+Umbra: Alright, that settles it. Welcome aboard officially, Canne.
+<<showTwoCharacters "CharacterDisplay" "Umbra" "Engineer">>
+Engineer: I'm glad you found a friend, but I'm sorry I couldn't be more help with the ship.
+Umbra: That's ok. Know anyone else who might be able to help?
+Engineer: A couple, actually. The next nearest station to here is Mall station.
+Engineer: A lot of people live there, and there's lots of businesses, so you might find someone who can help.
+Engineer: There's also a research outpost near there studying one of the interplanetary warp gates. There should be a few astrophysicists there.
+Umbra: Alright, thanks so much for you help.
+
+<<wait 1>>
+
+Cucumberment Team: Thanks for playing! You've reached the end of the currently available content.
+Cucumberment Team: You're welcome to keep exploring, but you've probably found everything of note.
+Cucumberment Team: When you're ready to quit, just press <b>Escape</b>
+
+===

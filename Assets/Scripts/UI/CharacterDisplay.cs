@@ -67,6 +67,10 @@ public class CharacterDisplay : MonoBehaviour
 
     public void ShowCharacterOne(string name) {
         CharacterData character = characterLibrary.characters.Find(c => c.characterName == name);
+        if (!character || !character.icon) {
+            char1Image.enabled = false;
+            return;
+        }
         if (character) {
             char1 = character;
             char1Image.sprite = character.icon;
@@ -76,7 +80,12 @@ public class CharacterDisplay : MonoBehaviour
     }
 
     public void ShowCharacterTwo(string name) {
+        Debug.Log("Attempting to show char " + name);
         CharacterData character = characterLibrary.characters.Find(c => c.characterName == name);
+        if (!character || !character.icon) {
+            char2Image.enabled = false;
+            return;
+        }
         if (character) {
             char2 = character;
             char2Image.sprite = character.icon;

@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 596133ab1c04ba09ba2116a322e0a035, type: 3}
-  m_Name: Item Library
+  m_Script: {fileID: 11500000, guid: 8dc8f0f097de7410d947297044408d7d, type: 3}
+  m_Name: Medicumber
   m_EditorClassIdentifier: 
-  items:
-  - {fileID: 11400000, guid: d3cf5bbd2563c4e78b74885cf0e45cfc, type: 2}
-  - {fileID: 11400000, guid: 7514c254715f78dc882d87581139ed79, type: 2}
+  itemName: Medicumber
+  itemIcon: {fileID: 21300000, guid: 18887989cf03a1d00b4d43828774367c, type: 3}
+  weight: 1.5

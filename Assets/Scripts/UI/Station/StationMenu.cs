@@ -123,10 +123,10 @@ public class StationMenu : MonoBehaviour
 
         if (!character) character = dialogue.character;
 
-        if (character.icon) {
-            CharacterDisplay.Main.ShowCharacterOne("Umbra");
-            CharacterDisplay.Main.ShowCharacterTwo(character.name);
-        }
+
+        // Debug.Log("Got to here for setting char portrait");
+        CharacterDisplay.Main.ShowCharacterOne("Umbra");
+        CharacterDisplay.Main.ShowCharacterTwo(character.characterName);
         dialogueRunner.StartDialogue(dialogueName);
         
         GiveUpMenuControl();

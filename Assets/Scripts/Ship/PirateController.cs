@@ -43,7 +43,7 @@ public class PirateController : MonoBehaviour
     void AimToward(Vector3 target) {
         Vector3 toTarget = target - transform.position;
 
-        Debug.Log("dist to target " + toTarget.magnitude);
+        // Debug.Log("dist to target " + toTarget.magnitude);
         
         Vector3 localDirection = transform.InverseTransformDirection(toTarget);
 

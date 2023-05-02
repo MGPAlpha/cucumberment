@@ -2,22 +2,44 @@
 tags:
 ---
 
-Doctor: Are you new? I don't think I've seen you delivering before.
+Dr. Norm: Are you new? I don't think I've seen you delivering before.
 Umbra: Yeah. I just got here.
-Doctor: Oh, you're new to this asteroid field?
+Dr. Norm: Oh, you're new to this asteroid field?
 Umbra: No new to the whole system.
-Doctor: What? That's impossible.
+Dr. Norm: What? That's impossible.
 Umbra: So I've been told.
 Umbra: But last thing I remember, I was flying in the 8700s, and then I wake up here, four thousand years later on the opposite side of the galaxy.
-Doctor: You have no memory of how you got here?
+Dr. Norm: You have no memory of how you got here?
 Umbra: Nothing.
-Doctor: I could take a look, see if you've got any medical or neurological anomalies. Best to make sure you're healthy after such a trip.
+Dr. Norm: I could take a look, see if you've got any medical or neurological anomalies. Best to make sure you're healthy after such a trip.
 Umbra: Sure, why not? What do you need me to do.
-Doctor: Come with me to my office. I'll do what I can to help.
-In the meantime...
+Dr. Norm: Come with me to my office. I'll do what I can to help.
 
-Mitchell & Rose: Attention Player! (probably Anne)
-Mitchell & Rose: You've reached the end of our prototype! Feel free to play around some more, and just hold **ESC** to quit the game.
-Mitchell & Rose: Thank's for playing!
+<i>One hour later</i>
+
+Dr. Norm: Alright then Umbra, I've got the results back on your comprehensive tests.
+Umbra: Good news?
+Dr. Norm: Well you've got a perfect bill of health. I don't know what happened to you, but it doesn't seem to have affected your health.
+Dr. Norm: However I also had your genome sequenced, and it seems you're missing several typical mutations that occurred over the last few thousand years.
+Umbra: So what does that mean?
+Dr. Norm: It seems like you're right. You're a few thousand years old.
+
+<<wait 1.5>>
+
+Umbra: Well that's a lot to take in.
+Dr. Norm: I'm sure, but I don't know what else to tell ya.
+Umbra: Do you have any idea how this could happen?
+Dr. Norm: Dang it Umbra, I'm a doctor, not an astrophysicist!
+Dr. Norm: Although...
+Dr. Norm: I do know someone who might be able to figure something out.
+Dr. Norm: I have an engineer friend over at the Shipyard that could take a look at your ship.
+Dr. Norm: They might be able to figure something out about how you got here.
+Umbra: Alright, how do I get there?
+Dr. Norm: It's just the next station over.
+Dr. Norm: Actually, there should be a shipment of medicumbers waiting to be delivered there, if you wouldn't mind taking it.
+Dr. Norm: Accepting the shipment should give you the coordinates.
+Umbra: Alright, I guess I'll see what I can find there.
+
+<<progressQuest "Game Start">>
 
 ===

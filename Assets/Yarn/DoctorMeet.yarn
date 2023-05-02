@@ -2,9 +2,9 @@
 tags:
 ---
 
-Doctor: Hi there. Are you here with our cucumber shipment?
+Dr. Norm: Hi there. Are you here with our cucumber shipment?
 Umbra: Yeah. Where should I put them?
-Doctor: Just go to the Job Terminal to complete the delivery. We'll handle the rest.
+Dr. Norm: Just go to the Job Terminal to complete the delivery. We'll handle the rest.
 <<progressQuest "Game Start">>
 
 ===

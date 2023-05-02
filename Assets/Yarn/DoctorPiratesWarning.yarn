@@ -1,0 +1,12 @@
+﻿title: DoctorPiratesWarning
+tags:
+---
+
+Dr. Norm: Oh before you leave, I almost forgot!
+Dr. Norm: There have apparently been some pirates out lately between here and the Shipyard.
+Dr. Norm: They probably won't hurt you, but they may try to slow you down and steal your cucumbers.
+Dr. Norm: If you get into trouble, remember you can use <b>Shift</b> to activate your boosters and get away, at a higher cost to your fuel.
+Umbra: Got it, thanks.
+<<progressQuest "Game Start">>
+
+===

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f98380c647a91e316954c0ef20d8b1d2, type: 3}
-  m_Name: Doctor
+  m_Name: Dr Norm Alguy
   m_EditorClassIdentifier: 
-  characterName: Doctor
-  icon: {fileID: 0}
-  defaultDialogue: 
+  characterName: Dr. Norm
+  icon: {fileID: 21300000, guid: a4073a818e561a073aeac137f9f29111, type: 3}
+  defaultDialogue: DoctorIdle
