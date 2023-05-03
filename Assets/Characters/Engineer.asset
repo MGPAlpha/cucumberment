@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Engineer
   m_EditorClassIdentifier: 
   characterName: Engineer
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9dd8430d69f03ca58b181ea12a4d5d53, type: 3}
   defaultDialogue: EngineerIdle
